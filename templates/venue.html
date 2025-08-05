@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECCI6 - Venue</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h3>ECCI6</h3>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
+                <li><a href="{{ url_for('about') }}" class="nav-link">About</a></li>
+                <li><a href="{{ url_for('committee') }}" class="nav-link">Committee</a></li>
+                <li><a href="{{ url_for('dates') }}" class="nav-link">Important Dates</a></li>
+                <li><a href="{{ url_for('submission') }}" class="nav-link">Paper Submission</a></li>
+                <li><a href="{{ url_for('themes') }}" class="nav-link">Themes</a></li>
+                <li><a href="{{ url_for('registration') }}" class="nav-link">Registration</a></li>
+                <li><a href="{{ url_for('venue') }}" class="nav-link active">Venue</a></li>
+                <li><a href="{{ url_for('contact') }}" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Venue & Location Section -->
+    <section id="venue" class="section section--alt" style="padding-top: 100px;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Venue & Location</h2>
+            </div>
+            <div class="venue-info enhanced-venue">
+                <div class="venue-details">
+                    <h4>St. Joseph's College of Engineering</h4>
+                    <p>Old Mahabalipuram Road, Chennai - 600119, Tamil Nadu, India</p>
+                    <div class="venue-contact">
+                        <div class="contact-item">
+                            <span class="contact-icon">📞</span>
+                            <span>+91 44-24501060</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <span>conference@stjosephs.ac.in</span>
+                        </div>
+                    </div>
+                    <div class="venue-features enhanced-features">
+                        <div class="feature-item">🏢 Modern Conference Facilities</div>
+                        <div class="feature-item">🚗 Ample Parking Space</div>
+                        <div class="feature-item">🍽️ Catering Services</div>
+                        <div class="feature-item">📶 High-Speed Internet</div>
+                        <div class="feature-item">🏨 Nearby Accommodations</div>
+                        <div class="feature-item">🚌 Transportation Support</div>
+                    </div>
+                </div>
+                
+                <!-- Google Maps Embed -->
+                <div class="map-container enhanced-map">
+                    <h4>Location Map</h4>
+                    <div class="map-embed">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.2631094166644!2d80.21220531482175!3d12.869136490889896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525c4b66e8d7cf%3A0x7b6e7c7b5c5c5c5c!2sSt.%20Joseph's%20College%20of%20Engineering!5e0!3m2!1sen!2sin!4v1625000000000!5m2!1sen!2sin"
+                            width="100%" 
+                            height="400" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <div class="map-info enhanced-map-info">
+                        <h5>Getting There</h5>
+                        <ul>
+                            <li><strong>By Air:</strong> Chennai International Airport (15 km away)</li>
+                            <li><strong>By Train:</strong> Tambaram Railway Station (8 km away)</li>
+                            <li><strong>By Road:</strong> Direct access via Old Mahabalipuram Road (OMR/IT Expressway)</li>
+                            <li><strong>Local Transport:</strong> Bus, Metro, Auto-rickshaw, and Taxi services available</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer enhanced-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>ECCI6 - 2026</h4>
+                    <p>International Conference on Electronics, Communication, Computing, Image Processing, and Industry 6.0</p>
+                    <div class="footer-social">
+                        <span>Follow us for updates</span>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="{{ url_for('about') }}">About</a></li>
+                        <li><a href="{{ url_for('committee') }}">Committee</a></li>
+                        <li><a href="{{ url_for('dates') }}">Important Dates</a></li>
+                        <li><a href="{{ url_for('submission') }}">Paper Submission</a></li>
+                        <li><a href="{{ url_for('themes') }}">Themes</a></li>
+                        <li><a href="{{ url_for('registration') }}">Registration</a></li>
+                        <li><a href="{{ url_for('venue') }}">Venue</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>St. Joseph's College of Engineering<br>
+                    Chennai, Tamil Nadu, India<br>
+                    Email: conference@stjosephs.ac.in</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Important Resources</h4>
+                    <ul>
+                        <li><a href="https://easychair.org/conferences/?conf=ecci6-2026" target="_blank">EasyChair Submission</a></li>
+                        <li><a href="https://www.ieee.org/conferences/publishing/templates.html" target="_blank">IEEE Templates</a></li>
+                        <li><a href="https://journals.ieeeauthorcenter.ieee.org/choose-a-publishing-greement/about-the-ieee-copyright-form/" target="_blank">Copyright Forms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 St. Joseph's College of Engineering. All rights reserved. | Designed for ECCI6 Conference</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

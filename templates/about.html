@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECCI6 - About</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h3>ECCI6</h3>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
+                <li><a href="{{ url_for('about') }}" class="nav-link active">About</a></li>
+                <li><a href="{{ url_for('committee') }}" class="nav-link">Committee</a></li>
+                <li><a href="{{ url_for('dates') }}" class="nav-link">Important Dates</a></li>
+                <li><a href="{{ url_for('submission') }}" class="nav-link">Paper Submission</a></li>
+                <li><a href="{{ url_for('themes') }}" class="nav-link">Themes</a></li>
+                <li><a href="{{ url_for('registration') }}" class="nav-link">Registration</a></li>
+                <li><a href="{{ url_for('venue') }}" class="nav-link">Venue</a></li>
+                <li><a href="{{ url_for('contact') }}" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Conference Section -->
+    <section id="about" class="section section--alt" style="padding-top: 100px;">
+        <div class="container">
+            <div class="section-header">
+                <h2>About the Conference</h2>
+            </div>
+            <div class="card enhanced-card">
+                <div class="card__body">
+                    <p>The International Conference on Electronics, Communication, Computing, Image Processing, and Industry 6.0 (ECCI6) aims to provide a dynamic forum for researchers, practitioners, and industry experts to present and exchange innovative ideas, breakthroughs, and emerging technologies shaping the future of intelligent systems. The conference seeks to promote interdisciplinary dialogue and showcase cutting-edge advancements driving sustainable, autonomous, and explainable solutions in next-generation systems.</p>
+                    <p>ECCI6 brings together leading researchers, industry professionals, and academics from around the world to share their latest findings and innovations in electronics, communication technologies, computing systems, advanced image processing techniques, and the revolutionary Industry 6.0 paradigm.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Department Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>About the Department</h2>
+            </div>
+            <div class="card enhanced-card">
+                <div class="card__body">
+                    <p>The Department of Electronics and Communication Engineering at St. Joseph's College of Engineering was established in 1994 and has been at the forefront of engineering education and research. The department offers undergraduate and postgraduate programs with state-of-the-art laboratories and experienced faculty members. Our research focuses on areas including wireless communication, signal processing, VLSI design, and embedded systems.</p>
+                    <p>With a strong emphasis on innovation and practical learning, the department has produced thousands of skilled engineers who have made significant contributions to the industry and research community worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Institution Section -->
+    <section class="section section--alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>About St. Joseph's College of Engineering</h2>
+            </div>
+            <div class="card enhanced-card">
+                <div class="card__body">
+                    <p>Established in 1994, St. Joseph's College of Engineering is a premier autonomous institution in Chennai, Tamil Nadu. Accredited with A+ grade by NAAC and recognized by AICTE, the college has been a beacon of engineering excellence for over three decades. The institution is renowned for its state-of-the-art infrastructure, highly qualified faculty, and strong industry partnerships.</p>
+                </div>
+            </div>
+            <div class="stats-grid enhanced-stats">
+                <div class="stat-card enhanced-stat-card">
+                    <div class="stat-icon">🎓</div>
+                    <div class="stat-number" data-target="30">0</div>
+                    <div class="stat-label">Years of Excellence</div>
+                </div>
+                <div class="stat-card enhanced-stat-card">
+                    <div class="stat-icon">👨‍🎓</div>
+                    <div class="stat-number" data-target="250">0</div>
+                    <div class="stat-label">Faculty Members</div>
+                </div>
+                <div class="stat-card enhanced-stat-card">
+                    <div class="stat-icon">🔬</div>
+                    <div class="stat-number" data-target="15">0</div>
+                    <div class="stat-label">Research Centers</div>
+                </div>
+                <div class="stat-card enhanced-stat-card">
+                    <div class="stat-icon">🌍</div>
+                    <div class="stat-number" data-target="10000">0</div>
+                    <div class="stat-label">Alumni Network</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer enhanced-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>ECCI6 - 2026</h4>
+                    <p>International Conference on Electronics, Communication, Computing, Image Processing, and Industry 6.0</p>
+                    <div class="footer-social">
+                        <span>Follow us for updates</span>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="{{ url_for('about') }}">About</a></li>
+                        <li><a href="{{ url_for('committee') }}">Committee</a></li>
+                        <li><a href="{{ url_for('dates') }}">Important Dates</a></li>
+                        <li><a href="{{ url_for('submission') }}">Paper Submission</a></li>
+                        <li><a href="{{ url_for('themes') }}">Themes</a></li>
+                        <li><a href="{{ url_for('registration') }}">Registration</a></li>
+                        <li><a href="{{ url_for('venue') }}">Venue</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>St. Joseph's College of Engineering<br>
+                    Chennai, Tamil Nadu, India<br>
+                    Email: conference@stjosephs.ac.in</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Important Resources</h4>
+                    <ul>
+                        <li><a href="https://easychair.org/conferences/?conf=ecci6-2026" target="_blank">EasyChair Submission</a></li>
+                        <li><a href="https://www.ieee.org/conferences/publishing/templates.html" target="_blank">IEEE Templates</a></li>
+                        <li><a href="https://journals.ieeeauthorcenter.ieee.org/choose-a-publishing-greement/about-the-ieee-copyright-form/" target="_blank">Copyright Forms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 St. Joseph's College of Engineering. All rights reserved. | Designed for ECCI6 Conference</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

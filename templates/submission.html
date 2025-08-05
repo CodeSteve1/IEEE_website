@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECCI6 - Paper Submission</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h3>ECCI6</h3>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
+                <li><a href="{{ url_for('about') }}" class="nav-link">About</a></li>
+                <li><a href="{{ url_for('committee') }}" class="nav-link">Committee</a></li>
+                <li><a href="{{ url_for('dates') }}" class="nav-link">Important Dates</a></li>
+                <li><a href="{{ url_for('submission') }}" class="nav-link active">Paper Submission</a></li>
+                <li><a href="{{ url_for('themes') }}" class="nav-link">Themes</a></li>
+                <li><a href="{{ url_for('registration') }}" class="nav-link">Registration</a></li>
+                <li><a href="{{ url_for('venue') }}" class="nav-link">Venue</a></li>
+                <li><a href="{{ url_for('contact') }}" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Enhanced Paper Submission Section -->
+    <section id="submission" class="section" style="padding-top: 100px;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Paper Submission</h2>
+                <p>Comprehensive guide for submitting your research papers to ECCI6</p>
+            </div>
+            
+            <!-- Submission Platform -->
+            <div class="submission-category">
+                <h3 class="category-title">🎯 Submission Platform</h3>
+                <div class="submission-platform">
+                    <div class="card enhanced-card">
+                        <div class="card__body">
+                            <div class="platform-info">
+                                <div class="platform-logo">📄</div>
+                                <div class="platform-details">
+                                    <h3>EasyChair Submission System</h3>
+                                    <p>All paper submissions must be made through the EasyChair conference management system. Create your account and submit your research papers.</p>
+                                    <a href="https://easychair.org/conferences/?conf=ecci6-2026" target="_blank" class="btn btn--primary btn--lg enhanced-btn">Submit Paper via EasyChair</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paper Format and Templates -->
+            <div class="submission-category">
+                <h3 class="category-title">📝 Paper Format & Templates</h3>
+                <div class="template-grid enhanced-grid">
+                    <div class="template-card enhanced-template-card">
+                        <div class="template-icon">📄</div>
+                        <h4>Sample Paper Format (MS Word)</h4>
+                        <p>Official sample paper format provided by the conference organizers to guide your paper structure</p>
+                        <a href="https://drive.google.com/file/d/1mgnQDI1PoWf8cLxgolTXGL4ILSQ98VU3/view" target="_blank" class="btn btn--outline enhanced-btn">Download Sample Format</a>
+                    </div>
+                    <div class="template-card enhanced-template-card">
+                        <div class="template-icon">📝</div>
+                        <h4>IEEE Word Template</h4>
+                        <p>Official IEEE conference paper template for Microsoft Word with proper formatting guidelines</p>
+                        <a href="https://www.ieee.org/conferences/publishing/templates.html" target="_blank" class="btn btn--outline enhanced-btn">Download Word Template</a>
+                    </div>
+                    <div class="template-card enhanced-template-card">
+                        <div class="template-icon">📄</div>
+                        <h4>IEEE LaTeX Template</h4>
+                        <p>Professional IEEE conference paper template for LaTeX users via Overleaf platform</p>
+                        <a href="https://www.overleaf.com/latex/templates/ieee-conference-template/grfzhhncsfqn" target="_blank" class="btn btn--outline enhanced-btn">Access LaTeX Template</a>
+                    </div>
+                    <div class="template-card enhanced-template-card">
+                        <div class="template-icon">🎯</div>
+                        <h4>IEEE Template Selector</h4>
+                        <p>Interactive tool to help you find the perfect IEEE template for your specific needs</p>
+                        <a href="https://template-selector.ieee.org/" target="_blank" class="btn btn--outline enhanced-btn">Use Template Selector</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Policies and Guidelines -->
+            <div class="submission-category">
+                <h3 class="category-title">📋 Policies & Guidelines</h3>
+                <div class="policies-grid enhanced-policies">
+                    <div class="policy-card enhanced-policy-card">
+                        <div class="policy-icon">📋</div>
+                        <h4>IEEE Copyright Form</h4>
+                        <p>Essential information about IEEE copyright requirements and electronic copyright form (eCF) process</p>
+                        <a href="https://journals.ieeeauthorcenter.ieee.org/choose-a-publishing-greement/about-the-ieee-copyright-form/#:~:text=The%20Electronic%20IEEE%20Copyright%20Form%20%28eCF%29%20makes%20signing,government%20employees%20may%20require%20a%20different%20copyright%20form" target="_blank" class="btn btn--secondary enhanced-btn">View Copyright Form Info</a>
+                    </div>
+                    <div class="policy-card enhanced-policy-card">
+                        <div class="policy-icon">🔍</div>
+                        <h4>IEEE Plagiarism Policy</h4>
+                        <p>Comprehensive guidelines on IEEE's plagiarism policies and academic integrity requirements</p>
+                        <a href="https://www.ieee.org/publications/rights/plagiarism/id-plagiarism.html" target="_blank" class="btn btn--secondary enhanced-btn">Read Plagiarism Policy</a>
+                    </div>
+                    <div class="policy-card enhanced-policy-card">
+                        <div class="policy-icon">✅</div>
+                        <h4>General Guidelines</h4>
+                        <p>Complete submission guidelines including formatting, review process, and author requirements</p>
+                        <button class="btn btn--secondary enhanced-btn" onclick="showSubmissionGuidelines()">View Guidelines</button>
+                    </div>
+                    <div class="policy-card enhanced-policy-card">
+                        <div class="policy-icon">⚡</div>
+                        <h4>Review Process</h4>
+                        <p>Detailed information about our double-blind peer review process and evaluation criteria</p>
+                        <button class="btn btn--secondary enhanced-btn" onclick="showReviewProcess()">Review Process Info</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enhanced Submission Guidelines -->
+            <div class="submission-guidelines enhanced-guidelines">
+                <h3>📊 Detailed Submission Requirements</h3>
+                <div class="guidelines-grid enhanced-guidelines-grid">
+                    <div class="guideline-card enhanced-guideline-card">
+                        <div class="guideline-icon">📄</div>
+                        <h4>Paper Format</h4>
+                        <ul>
+                            <li>IEEE Conference format mandatory</li>
+                            <li>Maximum 6 pages including references</li>
+                            <li>PDF format only</li>
+                            <li>Font: Times New Roman, 10pt</li>
+                            <li>Two-column format with single spacing</li>
+                        </ul>
+                    </div>
+                    <div class="guideline-card enhanced-guideline-card">
+                        <div class="guideline-icon">🔍</div>
+                        <h4>Review Process</h4>
+                        <ul>
+                            <li>Double-blind peer review</li>
+                            <li>Minimum 3 reviewers per paper</li>
+                            <li>Reviews based on originality, technical quality, and clarity</li>
+                            <li>Plagiarism check using advanced tools</li>
+                            <li>Author feedback incorporated</li>
+                        </ul>
+                    </div>
+                    <div class="guideline-card enhanced-guideline-card">
+                        <div class="guideline-icon">👤</div>
+                        <h4>Author Guidelines</h4>
+                        <ul>
+                            <li>Papers must be in English</li>
+                            <li>Original work not published elsewhere</li>
+                            <li>At least one author must register</li>
+                            <li>Author names and affiliations removed for review</li>
+                            <li>Maximum 8 authors per paper</li>
+                        </ul>
+                    </div>
+                    <div class="guideline-card enhanced-guideline-card">
+                        <div class="guideline-icon">📋</div>
+                        <h4>Submission Requirements</h4>
+                        <ul>
+                            <li>Submit via EasyChair only</li>
+                            <li>Include abstract (150-250 words)</li>
+                            <li>Provide 4-6 keywords</li>
+                            <li>Ensure proper citations and references</li>
+                            <li>Include author biography (final version)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Publication Information -->
+            <div class="publication-info enhanced-publication">
+                <div class="card enhanced-card">
+                    <div class="card__body">
+                        <h3>📚 Publication & Indexing</h3>
+                        <div class="publication-details">
+                            <div class="publication-item enhanced-publication-item">
+                                <div class="publication-icon">📚</div>
+                                <div>
+                                    <h4>IEEE Xplore Digital Library</h4>
+                                    <p>All accepted and presented papers will be published in IEEE Xplore Digital Library for global accessibility</p>
+                                </div>
+                            </div>
+                            <div class="publication-item enhanced-publication-item">
+                                <div class="publication-icon">🔍</div>
+                                <div>
+                                    <h4>Scopus Indexing</h4>
+                                    <p>Conference proceedings will be indexed in Scopus for enhanced visibility and citation tracking</p>
+                                </div>
+                            </div>
+                            <div class="publication-item enhanced-publication-item">
+                                <div class="publication-icon">🏆</div>
+                                <div>
+                                    <h4>Best Paper Awards</h4>
+                                    <p>Outstanding papers will be recognized with best paper awards in different categories</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer enhanced-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>ECCI6 - 2026</h4>
+                    <p>International Conference on Electronics, Communication, Computing, Image Processing, and Industry 6.0</p>
+                    <div class="footer-social">
+                        <span>Follow us for updates</span>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="{{ url_for('about') }}">About</a></li>
+                        <li><a href="{{ url_for('committee') }}">Committee</a></li>
+                        <li><a href="{{ url_for('dates') }}">Important Dates</a></li>
+                        <li><a href="{{ url_for('submission') }}">Paper Submission</a></li>
+                        <li><a href="{{ url_for('themes') }}">Themes</a></li>
+                        <li><a href="{{ url_for('registration') }}">Registration</a></li>
+                        <li><a href="{{ url_for('venue') }}">Venue</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>St. Joseph's College of Engineering<br>
+                    Chennai, Tamil Nadu, India<br>
+                    Email: conference@stjosephs.ac.in</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Important Resources</h4>
+                    <ul>
+                        <li><a href="https://easychair.org/conferences/?conf=ecci6-2026" target="_blank">EasyChair Submission</a></li>
+                        <li><a href="https://www.ieee.org/conferences/publishing/templates.html" target="_blank">IEEE Templates</a></li>
+                        <li><a href="https://journals.ieeeauthorcenter.ieee.org/choose-a-publishing-greement/about-the-ieee-copyright-form/" target="_blank">Copyright Forms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 St. Joseph's College of Engineering. All rights reserved. | Designed for ECCI6 Conference</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

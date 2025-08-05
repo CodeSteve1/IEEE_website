@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECCI6 - Important Dates</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h3>ECCI6</h3>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
+                <li><a href="{{ url_for('about') }}" class="nav-link">About</a></li>
+                <li><a href="{{ url_for('committee') }}" class="nav-link">Committee</a></li>
+                <li><a href="{{ url_for('dates') }}" class="nav-link active">Important Dates</a></li>
+                <li><a href="{{ url_for('submission') }}" class="nav-link">Paper Submission</a></li>
+                <li><a href="{{ url_for('themes') }}" class="nav-link">Themes</a></li>
+                <li><a href="{{ url_for('registration') }}" class="nav-link">Registration</a></li>
+                <li><a href="{{ url_for('venue') }}" class="nav-link">Venue</a></li>
+                <li><a href="{{ url_for('contact') }}" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Important Dates Section -->
+    <section id="dates" class="section section--alt" style="padding-top: 100px;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Important Dates</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h4>Full Paper Submission</h4>
+                        <p class="timeline-date">May 15, 2026</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h4>Notification of Acceptance</h4>
+                        <p class="timeline-date">July 1, 2026</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h4>Final Paper Submission</h4>
+                        <p class="timeline-date">August 15, 2026</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h4>Conference Dates</h4>
+                        <p class="timeline-date">September 17-18, 2026</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer enhanced-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>ECCI6 - 2026</h4>
+                    <p>International Conference on Electronics, Communication, Computing, Image Processing, and Industry 6.0</p>
+                    <div class="footer-social">
+                        <span>Follow us for updates</span>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="{{ url_for('about') }}">About</a></li>
+                        <li><a href="{{ url_for('committee') }}">Committee</a></li>
+                        <li><a href="{{ url_for('dates') }}">Important Dates</a></li>
+                        <li><a href="{{ url_for('submission') }}">Paper Submission</a></li>
+                        <li><a href="{{ url_for('themes') }}">Themes</a></li>
+                        <li><a href="{{ url_for('registration') }}">Registration</a></li>
+                        <li><a href="{{ url_for('venue') }}">Venue</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>St. Joseph's College of Engineering<br>
+                    Chennai, Tamil Nadu, India<br>
+                    Email: conference@stjosephs.ac.in</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Important Resources</h4>
+                    <ul>
+                        <li><a href="https://easychair.org/conferences/?conf=ecci6-2026" target="_blank">EasyChair Submission</a></li>
+                        <li><a href="https://www.ieee.org/conferences/publishing/templates.html" target="_blank">IEEE Templates</a></li>
+                        <li><a href="https://journals.ieeeauthorcenter.ieee.org/choose-a-publishing-greement/about-the-ieee-copyright-form/" target="_blank">Copyright Forms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 St. Joseph's College of Engineering. All rights reserved. | Designed for ECCI6 Conference</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
