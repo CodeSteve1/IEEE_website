@@ -1,13 +1,103 @@
-<!DOCTYPE html>
+\<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ECCI6 - Themes</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Container for the interactive tracks */
+        .tracks-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem; /* Spacing between track cards */
+        }
+
+        /* Make the entire card interactive */
+        .enhanced-theme-card--interactive {
+            flex-direction: column; /* Stack header and details vertically */
+            align-items: stretch; /* Allow children to fill the width */
+        }
+        
+        /* The clickable header area */
+        .track-header {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            cursor: pointer;
+            padding: 1rem; /* Use padding for spacing */
+            box-sizing: border-box;
+        }
+
+        /* Re-use your theme-icon and theme-content for consistency */
+        .track-header .theme-icon {
+             flex-shrink: 0; /* Prevent icon from shrinking */
+        }
+
+        .track-header .theme-content {
+            flex-grow: 1; /* Allow content to take up available space */
+            padding-right: 1rem;
+        }
+        
+        .track-header .theme-content .theme-description {
+            margin-top: 0.25rem;
+            color: #f6f2f2; /* Subtle color for the description */
+        }
+
+        /* The + / x toggle icon on the right */
+        .toggle-icon {
+            font-size: 2rem;
+            font-weight: 300;
+            color: #f4f3f3;
+            transition: transform 0.3s ease-out;
+            padding: 0 0.5rem;
+        }
+
+        .track-header.active .toggle-icon {
+            transform: rotate(45deg);
+            color: #f5f4f4;
+        }
+        
+        /* The collapsible details section */
+        .track-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s ease-in-out, padding 0.5s ease-in-out;
+            padding: 0 2rem; /* Initial padding for smooth transition */
+            border-top: 1px solid transparent; /* Prepare space for border */
+        }
+
+        /* State when the details are shown */
+        .track-details.show {
+            max-height: 1200px; /* Large value to accommodate content */
+            padding: 1.5rem 2rem; /* Add vertical padding when open */
+            border-top: 1px solid #e9ecef; /* Separator line */
+        }
+
+        .track-details ul {
+            list-style-type: none; /* Or use 'disc' if you prefer bullets */
+            padding-left: 0;
+            margin: 0;
+            column-count: 2;
+            column-gap: 2rem;
+        }
+        
+        .track-details li {
+            padding: 0.4rem 0;
+            color: #edebeb;
+            font-size: 0.95rem;
+        }
+        
+        /* Responsive: single column on smaller screens */
+        @media (max-width: 768px) {
+            .track-details ul {
+                column-count: 1;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
+       <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
             <div class="nav-brand">
@@ -32,360 +122,228 @@
         </div>
     </nav>
 
-    <!-- Enhanced Conference Themes Section -->
     <section id="themes" class="section section--alt" style="padding-top: 100px;">
         <div class="container">
             <div class="section-header">
                 <h2>Conference Themes</h2>
-                <p>Explore cutting-edge research areas organized by domain expertise</p>
+                <p>ECCI6 invites original research in the following 5 tracks. Click on a card to explore the specific topics.</p>
             </div>
             
-            <!-- Themes Overview -->
-            <div class="themes-overview enhanced-themes-overview">
+            <div class="themes-overview enhanced-themes-overview" style="margin-bottom: 2rem;">
                 <div class="card enhanced-card">
                     <div class="card__body">
-                        <h3>Research Domains & Tracks</h3>
-                        <p>ECCI6 features 14 comprehensive research themes organized into 4 major domains, covering the latest developments in electronics, communication, computing, image processing, and Industry 6.0 technologies.</p>
+                        <h3>Research Tracks Overview</h3>
+                        <p>ECCI6 features 5 comprehensive research tracks covering the latest developments in electronics, communication, computing, image processing, and Industry 6.0 technologies.</p>
                         <div class="theme-stats">
                             <div class="theme-stat">
-                                <span class="stat-number">4</span>
-                                <span class="stat-label">Research Domains</span>
+                                <span class="stat-number">5</span>
+                                <span class="stat-label">Interactive Tracks</span>
                             </div>
                             <div class="theme-stat">
-                                <span class="stat-number">14</span>
-                                <span class="stat-label">Theme Tracks</span>
-                            </div>
-                            <div class="theme-stat">
-                                <span class="stat-number">50+</span>
-                                <span class="stat-label">Research Topics</span>
+                                <span class="stat-number">80+</span>
+                                <span class="stat-label">Total Topics</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Core Electronics & Communication -->
-            <div class="theme-category">
-                <div class="category-header">
-                    <div class="category-icon">📡</div>
-                    <div class="category-info">
-                        <h3>Core Electronics & Communication</h3>
-                        <p>Foundational technologies in electronics and communication systems</p>
-                    </div>
-                </div>
-                <div class="themes-grid">
-                    <div class="theme-card enhanced-theme-card">
+            <div class="tracks-container">
+
+                <div class="theme-card enhanced-theme-card enhanced-theme-card--interactive">
+                    <div class="track-header">
                         <div class="theme-icon">🔌</div>
                         <div class="theme-content">
-                            <h4>Electronics and Communication Systems</h4>
-                            <p class="theme-description">Advanced electronic circuits, communication protocols, and system design methodologies</p>
-                            <div class="theme-topics">
-                                <h5>Key Topics:</h5>
-                                <ul>
-                                    <li>Circuit Design</li>
-                                    <li>Communication Protocols</li>
-                                    <li>System Integration</li>
-                                    <li>Electronic Components</li>
-                                </ul>
-                            </div>
+                            <h4>Track 1: Electronics</h4>
+                            <p class="theme-description">VLSI, semiconductors, sustainable electronics, and AI-optimized hardware.</p>
                         </div>
+                        <span class="toggle-icon">+</span>
                     </div>
-                    <div class="theme-card enhanced-theme-card">
-                        <div class="theme-icon">📊</div>
-                        <div class="theme-content">
-                            <h4>Signal Processing</h4>
-                            <p class="theme-description">Digital and analog signal processing techniques for modern communication systems</p>
-                            <div class="theme-topics">
-                                <h5>Key Topics:</h5>
-                                <ul>
-                                    <li>Digital Signal Processing</li>
-                                    <li>Analog Processing</li>
-                                    <li>Filtering Techniques</li>
-                                    <li>Signal Analysis</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="theme-card enhanced-theme-card">
-                        <div class="theme-icon">📶</div>
-                        <div class="theme-content">
-                            <h4>Wireless Communication Technologies</h4>
-                            <p class="theme-description">Cutting-edge wireless communication standards and emerging technologies</p>
-                            <div class="theme-topics">
-                                <h5>Key Topics:</h5>
-                                <ul>
-                                    <li>5G/6G Networks</li>
-                                    <li>Wireless Protocols</li>
-                                    <li>Antenna Design</li>
-                                    <li>RF Engineering</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="theme-card enhanced-theme-card">
-                        <div class="theme-icon">🤖</div>
-                        <div class="theme-content">
-                            <h4>Embedded Systems and Robotics</h4>
-                            <p class="theme-description">Intelligent embedded systems and robotic applications for Industry 6.0</p>
-                            <div class="theme-topics">
-                                <h5>Key Topics:</h5>
-                                <ul>
-                                    <li>Microcontrollers</li>
-                                    <li>Real-time Systems</li>
-                                    <li>Autonomous Robots</li>
-                                    <li>Sensor Networks</li>
-                                </ul>
-                            </div>
-                        </div>
+                    <div class="track-details">
+                        <ul>
+                            <li>Flexible and Printed Electronics</li>
+                            <li>AI-Optimized Hardware and Edge AI</li>
+                            <li>2D Materials and Advanced Semiconductors</li>
+                            <li>Energy-Efficient and Sustainable Electronics</li>
+                            <li>AI-Driven VLSI Design Automation</li>
+                            <li>Low-Power VLSI Design</li>
+                            <li>Advanced Semiconductor Materials</li>
+                            <li>3D IC and Chiplet Architectures</li>
+                            <li>VLSI for IoT and Edge Devices</li>
+                            <li>Security-First VLSI Design</li>
+                            <li>VLSI in Biomedical Applications</li>
+                            <li>Quantum and Neuromorphic VLSI</li>
+                            <li>FinFET and GAAFET Technologies</li>
+                            <li>VLSI for 5G and High-Speed Communication</li>
+                            <li>Biomedical Electronics</li>
+                        </ul>
                     </div>
                 </div>
-            </div>
 
-            <!-- Advanced Computing & AI -->
-            <div class="theme-category">
-                <div class="category-header">
-                    <div class="category-icon">🧠</div>
-                    <div class="category-info">
-                        <h3>Advanced Computing & AI</h3>
-                        <p>Next-generation computing paradigms and artificial intelligence solutions</p>
+                <div class="theme-card enhanced-theme-card enhanced-theme-card--interactive">
+                    <div class="track-header">
+                        <div class="theme-icon">📡</div>
+                        <div class="theme-content">
+                            <h4>Track 2: Communication</h4>
+                            <p class="theme-description">Next-gen networks from 5G/6G and satellites to quantum and optical communication.</p>
+                        </div>
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="track-details">
+                        <ul>
+                            <li>Advanced IoT & mMTC</li>
+                            <li>AI-Driven Networks</li>
+                            <li>Satellite Mega-Constellations & 5G NTN</li>
+                            <li>Quantum Communication & Cryptography</li>
+                            <li>Green & Energy-Efficient Networks</li>
+                            <li>Terahertz Communication</li>
+                            <li>System-on-Chip (SoC)</li>
+                            <li>5G Technology and Beyond</li>
+                            <li>Silicon Photonics</li>
+                            <li>6G Communication Networks</li>
+                            <li>Software-Defined Networking (SDN)</li>
+                            <li>Network Function Virtualization (NFV)</li>
+                            <li>Edge & Fog Networking</li>
+                            <li>Zero Trust architecture</li>
+                            <li>AI-driven Intrusion Detection (IDS)</li>
+                            <li>Blockchain for Secure Protocols</li>
+                            <li>Federated Learning in IoT Networks</li>
+                            <li>Ultra-Dense Wireless Networks</li>
+                            <li>Device-to-Device (D2D) Communication</li>
+                            <li>Visible Light Communication (VLC)</li>
+                            <li>Cognitive Radio Networks</li>
+                            <li>Self-Organizing Networks (SONs)</li>
+                            <li>Digital Twins in Communication</li>
+                            <li>AI-enhanced Routing Protocols</li>
+                            <li>Predictive QoS Management</li>
+                            <li>Resilient Remote Communication</li>
+                            <li>Photonic Integrated Circuits (PICs)</li>
+                            <li>Free-Space Optical (FSO)</li>
+                        </ul>
                     </div>
                 </div>
-                <div class="themes-grid">
-                    <div class="theme-card enhanced-theme-card">
+
+                <div class="theme-card enhanced-theme-card enhanced-theme-card--interactive">
+                    <div class="track-header">
                         <div class="theme-icon">💻</div>
                         <div class="theme-content">
-                            <h4>Computing and Artificial Intelligence</h4>
-                            <p class="theme-description">Next-generation computing paradigms and AI-driven solutions</p>
-                            <div class="theme-topics">
-                                <h5>Key Topics:</h5>
-                                <ul>
-                                    <li>Quantum Computing</li>
-                                    <li>Edge Computing</li>
-                                    <li>AI Algorithms</li>
-                                    <li>Distributed Systems</li>
-                                </ul>
-                            </div>
+                            <h4>Track 3: Computing</h4>
+                            <p class="theme-description">AI/ML, quantum computing, security, and advanced human-computer interfaces.</p>
                         </div>
+                        <span class="toggle-icon">+</span>
                     </div>
-                    <div class="theme-card enhanced-theme-card">
-                        <div class="theme-icon">🧠</div>
-                        <div class="theme-content">
-                            <h4>Machine Learning and Deep Learning</h4>
-                            <p class="theme-description">Advanced ML/DL techniques for intelligent system development</p>
-                            <div class="theme-topics">
-                                <h5>Key Topics:</h5>
-                                <ul>
-                                    <li>Neural Networks</li>
-                                    <li>Deep Learning</li>
-                                    <li>Reinforcement Learning</li>
-                                    <li>Computer Vision</li>
-                                </ul>
-                            </div>
-                        </div>
+                    <div class="track-details">
+                        <ul>
+                            <li>Explainable AI (XAI)</li>
+                            <li>Federated Learning</li>
+                            <li>Quantum Machine Learning</li>
+                            <li>Post-Quantum Cryptography</li>
+                            <li>Zero-Trust Security Models</li>
+                            <li>AI-Driven Intrusion Detection</li>
+                            <li>Serverless Architectures</li>
+                            <li>Edge, Cloud and Fog Computing</li>
+                            <li>Computational Genomics</li>
+                            <li>Digital Twins in Healthcare</li>
+                            <li>AI for Mental Health Monitoring</li>
+                            <li>Neurosymbolic AI</li>
+                            <li>Deepfake detection</li>
+                            <li>Ethical data mining</li>
+                            <li>IoT forensics</li>
+                            <li>Neuromorphic chips</li>
+                            <li>DevOps automation</li>
+                            <li>Low-code platforms</li>
+                            <li>AI for genomics</li>
+                            <li>Wearable computing</li>
+                            <li>AR/VR interfaces</li>
+                            <li>Swarm robotics</li>
+                            <li>Haptic feedback systems</li>
+                            <li>AI-driven UX design</li>
+                            <li>Social robotics</li>
+                        </ul>
                     </div>
-                    <div class="theme-card enhanced-theme-card">
+                </div>
+                
+                <div class="theme-card enhanced-theme-card enhanced-theme-card--interactive">
+                    <div class="track-header">
                         <div class="theme-icon">🖼️</div>
                         <div class="theme-content">
-                            <h4>Image Processing and Computer Vision</h4>
-                            <p class="theme-description">Advanced image analysis and computer vision for automation and AI</p>
-                            <div class="theme-topics">
-                                <h5>Key Topics:</h5>
-                                <ul>
-                                    <li>Computer Vision</li>
-                                    <li>Image Enhancement</li>
-                                    <li>Pattern Recognition</li>
-                                    <li>Visual Analytics</li>
-                                </ul>
-                            </div>
+                            <h4>Track 4: Image Processing</h4>
+                            <p class="theme-description">Advanced image analysis, computer vision, and AI-driven visual intelligence.</p>
                         </div>
+                        <span class="toggle-icon">+</span>
                     </div>
-                    <div class="theme-card enhanced-theme-card">
-                        <div class="theme-icon">⚡</div>
-                        <div class="theme-content">
-                            <h4>AI-Optimized Hardware and Edge AI</h4>
-                            <p class="theme-description">Hardware acceleration for AI workloads and edge computing solutions</p>
-                            <div class="theme-topics">
-                                <h5>Key Topics:</h5>
-                                <ul>
-                                    <li>AI Chips</li>
-                                    <li>Edge Computing</li>
-                                    <li>Hardware Acceleration</li>
-                                    <li>Neuromorphic Computing</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="theme-card enhanced-theme-card">
-                        <div class="theme-icon">🌐</div>
-                        <div class="theme-content">
-                            <h4>AI-Driven Networks</h4>
-                            <p class="theme-description">Intelligent networking solutions powered by artificial intelligence</p>
-                            <div class="theme-topics">
-                                <h5>Key Topics:</h5>
-                                <ul>
-                                    <li>Network Automation</li>
-                                    <li>AI-powered Routing</li>
-                                    <li>Intelligent QoS</li>
-                                    <li>Self-healing Networks</li>
-                                </ul>
-                            </div>
-                        </div>
+                    <div class="track-details">
+                        <ul>
+                            <li>Image Restoration with Deep Learning</li>
+                            <li>Generative Adversarial Networks (GANs)</li>
+                            <li>Explainable AI in Image Processing</li>
+                            <li>Tumor Detection & Classification</li>
+                            <li>MRI & CT Image Enhancement</li>
+                            <li>Fusion of Multi-modal Medical Images</li>
+                            <li>Image Processing for Autonomous Vehicles</li>
+                            <li>Real-Time Video Analytics</li>
+                            <li>Satellite Image Analysis</li>
+                            <li>Hyperspectral Image Processing</li>
+                            <li>Quantum Image Processing</li>
+                            <li>Ethical & Fair Image Processing</li>
+                            <li>Hardware-Efficient Image Processing</li>
+                            <li>Datasets and Benchmarks</li>
+                            <li>Document Analysis & Processing</li>
+                            <li>Image & Video Quality Models</li>
+                            <li>Image Processing for Public Health</li>
+                        </ul>
                     </div>
                 </div>
-            </div>
 
-            <!-- Industry & Manufacturing -->
-            <div class="theme-category">
-                <div class="category-header">
-                    <div class="category-icon">🏭</div>
-                    <div class="category-info">     
-                        <h3>Industry & Manufacturing</h3>
-                        <p>Smart manufacturing and industrial automation technologies</p>
-                    </div>
-                </div>
-                <div class="themes-grid">
-                    <div class="theme-card enhanced-theme-card">
+                <div class="theme-card enhanced-theme-card enhanced-theme-card--interactive">
+                    <div class="track-header">
                         <div class="theme-icon">🏭</div>
                         <div class="theme-content">
-                            <h4>Industry 6.0 and Smart Manufacturing</h4>
-                            <p class="theme-description">Next-generation industrial automation and smart manufacturing systems</p>
-                            <div class="theme-topics">
-                                <h5>Key Topics:</h5>
-                                <ul>
-                                    <li>Smart Factories</li>
-                                    <li>Industrial IoT</li>
-                                    <li>Automation</li>
-                                    <li>Digital Twins</li>
-                                </ul>
-                            </div>
+                            <h4>Track 5: Industry 6.0</h4>
+                            <p class="theme-description">Smart manufacturing, human-robot collaboration, and sustainable industrial systems.</p>
                         </div>
+                        <span class="toggle-icon">+</span>
                     </div>
-                    <div class="theme-card enhanced-theme-card">
-                        <div class="theme-icon">🌐</div>
-                        <div class="theme-content">
-                            <h4>IoT and Cyber-Physical Systems</h4>
-                            <p class="theme-description">Connected devices and cyber-physical system integration</p>
-                            <div class="theme-topics">
-                                <h5>Key Topics:</h5>
-                                <ul>
-                                    <li>IoT Protocols</li>
-                                    <li>Sensor Networks</li>
-                                    <li>Edge Devices</li>
-                                    <li>System Integration</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="theme-card enhanced-theme-card">
-                        <div class="theme-icon">📈</div>
-                        <div class="theme-content">
-                            <h4>Data Analytics and Big Data</h4>
-                            <p class="theme-description">Advanced analytics and big data processing for intelligent insights</p>
-                            <div class="theme-topics">
-                                <h5>Key Topics:</h5>
-                                <ul>
-                                    <li>Big Data Processing</li>
-                                    <li>Analytics</li>
-                                    <li>Data Mining</li>
-                                    <li>Business Intelligence</li>
-                                </ul>
-                            </div>
-                        </div>
+                    <div class="track-details">
+                        <ul>
+                            <li>Advanced AI & Machine Learning</li>
+                            <li>Human-Robot Collaboration (HRC)</li>
+                            <li>Cognitive Computing & Interfaces</li>
+                            <li>Industrial Internet of Things (IIoT)</li>
+                            <li>Digital Twins & Simulation</li>
+                            <li>Blockchain for Supply Chains</li>
+                            <li>Augmented & Virtual Reality (AR/VR)</li>
+                            <li>Sustainable Manufacturing Systems</li>
+                        </ul>
                     </div>
                 </div>
-            </div>
 
-            <!-- Sustainability & Green Technology -->
-            <div class="theme-category">
-                <div class="category-header">
-                    <div class="category-icon">🌱</div>
-                    <div class="category-info">
-                        <h3>Sustainability & Green Technology</h3>
-                        <p>Environmentally conscious technologies and sustainable solutions</p>
-                    </div>
-                </div>
-                <div class="themes-grid">
-                    <div class="theme-card enhanced-theme-card">
-                        <div class="theme-icon">🌱</div>
-                        <div class="theme-content">
-                            <h4>Energy-Efficient and Sustainable Electronics</h4>
-                            <p class="theme-description">Green electronics design and sustainable technology solutions</p>
-                            <div class="theme-topics">
-                                <h5>Key Topics:</h5>
-                                <ul>
-                                    <li>Low Power Design</li>
-                                    <li>Renewable Energy</li>
-                                    <li>Sustainable Materials</li>
-                                    <li>Energy Harvesting</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="theme-card enhanced-theme-card">
-                        <div class="theme-icon">🌿</div>
-                        <div class="theme-content">
-                            <h4>Green Communication & Energy-Efficient Networks</h4>
-                            <p class="theme-description">Environmentally conscious communication systems and energy optimization</p>
-                            <div class="theme-topics">
-                                <h5>Key Topics:</h5>
-                                <ul>
-                                    <li>Green Networking</li>
-                                    <li>Energy Optimization</li>
-                                    <li>Sustainable Communications</li>
-                                    <li>Carbon Footprint Reduction</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
     <footer class="footer enhanced-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>ECCI6 - 2026</h4>
-                    <p>International Conference on Electronics, Communication, Computing, Image Processing, and Industry 6.0</p>
-                    <div class="footer-social">
-                        <span>Follow us for updates</span>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="{{ url_for('about') }}">About</a></li>
-                        <li><a href="{{ url_for('committee') }}">Committee</a></li>
-                        <li><a href="{{ url_for('dates') }}">Important Dates</a></li>
-                        <li><a href="{{ url_for('submission') }}">Paper Submission</a></li>
-                        <li><a href="{{ url_for('themes') }}">Themes</a></li>
-                        <li><a href="{{ url_for('registration') }}">Registration</a></li>
-                        <li><a href="{{ url_for('venue') }}">Venue</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>St. Joseph's College of Engineering<br>
-                    Chennai, Tamil Nadu, India<br>
-                    Email: conference@stjosephs.ac.in</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Important Resources</h4>
-                    <ul>
-                        <li><a href="https://easychair.org/conferences/?conf=ecci6-2026" target="_blank">EasyChair Submission</a></li>
-                        <li><a href="https://www.ieee.org/conferences/publishing/templates.html" target="_blank">IEEE Templates</a></li>
-                        <li><a href="https://journals.ieeeauthorcenter.ieee.org/choose-a-publishing-greement/about-the-ieee-copyright-form/" target="_blank">Copyright Forms</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 St. Joseph's College of Engineering. All rights reserved. | Designed for ECCI6 Conference</p>
-            </div>
-        </div>
-    </footer>
+        </footer>
 
     <script src="{{ url_for('static', filename='app.js') }}"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Select all the clickable headers
+            const trackHeaders = document.querySelectorAll('.track-header');
+
+            trackHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    // The content panel is the next element after the header
+                    const detailsPanel = header.nextElementSibling;
+                    
+                    // Toggle the 'active' class on the header for styling the icon
+                    header.classList.toggle('active');
+
+                    // Toggle the 'show' class on the details panel to expand/collapse
+                    detailsPanel.classList.toggle('show');
+                });
+            });
+        });
+    </script>
 </body>
 </html>

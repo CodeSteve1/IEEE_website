@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initFormHandling();
     initActiveNavigation();
     initTimelineAnimations();
-    initNavbarEffects();
+    initNavbarEffects(); // This function is now updated
     initRegistrationButtons();
     initPaperSubmissionInteractions();
     initTemplateDownloadTracking();
@@ -676,7 +676,7 @@ function initActiveNavigation() {
     // Kept for potential future use with dynamic content.
 }
 
-// Enhanced navbar scroll effects
+// **FIXED** Enhanced navbar scroll effects
 function initNavbarEffects() {
     const navbar = document.querySelector('.navbar');
     let lastScrollY = window.scrollY;
@@ -684,14 +684,11 @@ function initNavbarEffects() {
     window.addEventListener('scroll', function() {
         const currentScrollY = window.scrollY;
         
+        // Add or remove 'scrolled' class based on scroll position
         if (currentScrollY > 50) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-            navbar.style.boxShadow = 'var(--shadow-md)';
-            navbar.style.backdropFilter = 'blur(20px)';
+            navbar.classList.add('scrolled');
         } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-            navbar.style.boxShadow = 'var(--shadow-sm)';
-            navbar.style.backdropFilter = 'blur(15px)';
+            navbar.classList.remove('scrolled');
         }
         
         // Hide/show navbar on scroll

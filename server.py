@@ -63,4 +63,4 @@ def contact():
 if __name__ == '__main__':
     # The 'debug=True' argument enables debug mode, which provides helpful error messages
     # and automatically reloads the server when you make changes to the code.
-    app.run(debug=True, port=8000)
+    app.run(debug=True,host='0.0.0.0', port=8000)

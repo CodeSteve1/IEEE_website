@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ECCI6 - About</title>
+    <title>ECCI6 - About the Conference</title>
+    <!-- Corrected CSS paths for a Flask-like structure -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <!-- Navigation -->
+        <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
             <div class="nav-brand">
@@ -32,73 +33,79 @@
         </div>
     </nav>
 
-    <!-- About Conference Section -->
-    <section id="about" class="section section--alt" style="padding-top: 100px;">
-        <div class="container">
-            <div class="section-header">
-                <h2>About the Conference</h2>
-            </div>
-            <div class="card enhanced-card">
-                <div class="card__body">
-                    <p>The International Conference on Electronics, Communication, Computing, Image Processing, and Industry 6.0 (ECCI6) aims to provide a dynamic forum for researchers, practitioners, and industry experts to present and exchange innovative ideas, breakthroughs, and emerging technologies shaping the future of intelligent systems. The conference seeks to promote interdisciplinary dialogue and showcase cutting-edge advancements driving sustainable, autonomous, and explainable solutions in next-generation systems.</p>
-                    <p>ECCI6 brings together leading researchers, industry professionals, and academics from around the world to share their latest findings and innovations in electronics, communication technologies, computing systems, advanced image processing techniques, and the revolutionary Industry 6.0 paradigm.</p>
+    <main>
+        <!-- ABOUT PAGE CONTENT -->
+        <div id="page-about">
+            <!-- About Conference Section -->
+            <section class="section section--alt" class="section" style="padding-top: 100px;">
+                <div class="container">
+                    <div class="section-header",style="padding-top: 100px;">
+                        <h2>About the Conference: Charting the Future</h2>
+                    </div>
+                    <div class="card enhanced-card">
+                        <div class="card__body">
+                            <p>The <strong>International Conference on Electronics, Communication, Computing, Image Processing, and Industry 6.0 (ECCI6)</strong> is more than just an academic event; it is a confluence of the brightest minds poised to redefine our technological future. Our primary objective is to create a vibrant, interdisciplinary forum where researchers, industry leaders, and practitioners can present, discuss, and challenge the innovations that will underpin the next generation of intelligent systems.</p>
+                            <p>At its core, ECCI6 is dedicated to bridging the gap between theoretical research and real-world application. We aim to foster robust collaborations that translate laboratory breakthroughs into tangible industrial solutions. The conference places a special emphasis on <strong>Industry 6.0</strong>, exploring the symbiotic relationship between human ingenuity and advanced artificial intelligence. We will delve into how this new paradigm promotes hyper-personalized products, sustainable manufacturing through bio-integration, and ethical, human-centric automation. By bringing together diverse perspectives, ECCI6 seeks to catalyze the development of systems that are not only autonomous and efficient but also transparent, explainable, and aligned with societal values.</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- About Department Section -->
-    <section class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2>About the Department</h2>
-            </div>
-            <div class="card enhanced-card">
-                <div class="card__body">
-                    <p>The Department of Electronics and Communication Engineering at St. Joseph's College of Engineering was established in 1994 and has been at the forefront of engineering education and research. The department offers undergraduate and postgraduate programs with state-of-the-art laboratories and experienced faculty members. Our research focuses on areas including wireless communication, signal processing, VLSI design, and embedded systems.</p>
-                    <p>With a strong emphasis on innovation and practical learning, the department has produced thousands of skilled engineers who have made significant contributions to the industry and research community worldwide.</p>
+            <!-- About Department Section -->
+            <section class="section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>About the Department of ECE</h2>
+                    </div>
+                    <div class="card enhanced-card">
+                        <div class="card__body">
+                            <p>Established in 1994, the <strong>Department of Electronics and Communication Engineering</strong> at St. Joseph's College of Engineering has consistently been a trailblazer in engineering education and research. With a legacy of excellence, the department is an NBA-accredited and Anna University-recognized research center, offering both undergraduate and postgraduate programs that are at the cutting edge of technology.</p>
+                            <p>Our strength lies in our state-of-the-art laboratories, which are equipped to handle advanced research in areas like <strong>5G/6G Wireless Communication, VLSI Design, Edge AI, and Embedded IoT Systems</strong>. The department is home to a distinguished faculty, comprising seasoned academics and researchers who are dedicated to mentoring the next generation of engineers. Our curriculum is designed with a strong emphasis on project-based learning and innovation, empowering students to tackle complex challenges and make significant contributions to the global technology landscape.</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- About Institution Section -->
-    <section class="section section--alt">
-        <div class="container">
-            <div class="section-header">
-                <h2>About St. Joseph's College of Engineering</h2>
-            </div>
-            <div class="card enhanced-card">
-                <div class="card__body">
-                    <p>Established in 1994, St. Joseph's College of Engineering is a premier autonomous institution in Chennai, Tamil Nadu. Accredited with A+ grade by NAAC and recognized by AICTE, the college has been a beacon of engineering excellence for over three decades. The institution is renowned for its state-of-the-art infrastructure, highly qualified faculty, and strong industry partnerships.</p>
+            <!-- About Institution Section -->
+            <section class="section section--alt">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>About St. Joseph's College of Engineering</h2>
+                    </div>
+                    <div class="card enhanced-card">
+                        <div class="card__body">
+                            <p>Since its inception in 1994, <strong>St. Joseph's College of Engineering</strong> has emerged as a premier, autonomous institution located on the vibrant IT corridor of Chennai. With the highest grade of 'A+' by NAAC and consistent top rankings, the college is a beacon of higher learning and technical excellence in India. Our lush, green campus provides a serene and inspiring environment for students to learn, innovate, and grow.</p>
+                             <p>We are committed to a holistic educational model that balances rigorous academic training with personal development. The institution is renowned for its world-class infrastructure, including a modern library, advanced research centers, and outstanding sports facilities. Our strong industry partnerships and a dedicated placement cell ensure that our graduates are highly sought after by leading global corporations. At St. Joseph's, we don't just educate engineers; we cultivate leaders and innovators who are prepared to make a positive impact on the world.</p>
+                        </div>
+                    </div>
+                    <div class="stats-grid enhanced-stats">
+                        <div class="stat-card enhanced-stat-card">
+                            <div class="stat-icon">🎓</div>
+                            <div class="stat-number" data-target="30">0</div>
+                            <div class="stat-label">Years of Excellence</div>
+                        </div>
+                        <div class="stat-card enhanced-stat-card">
+                            <div class="stat-icon">👨‍🎓</div>
+                            <div class="stat-number" data-target="250">0</div>
+                            <div class="stat-label">Distinguished Faculty</div>
+                        </div>
+                        <div class="stat-card enhanced-stat-card">
+                            <div class="stat-icon">🔬</div>
+                            <div class="stat-number" data-target="15">0</div>
+                            <div class="stat-label">Advanced Research Centers</div>
+                        </div>
+                        <div class="stat-card enhanced-stat-card">
+                            <div class="stat-icon">🌍</div>
+                            <div class="stat-number" data-target="10000">0</div>
+                            <div class="stat-label">Global Alumni Network</div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="stats-grid enhanced-stats">
-                <div class="stat-card enhanced-stat-card">
-                    <div class="stat-icon">🎓</div>
-                    <div class="stat-number" data-target="30">0</div>
-                    <div class="stat-label">Years of Excellence</div>
-                </div>
-                <div class="stat-card enhanced-stat-card">
-                    <div class="stat-icon">👨‍🎓</div>
-                    <div class="stat-number" data-target="250">0</div>
-                    <div class="stat-label">Faculty Members</div>
-                </div>
-                <div class="stat-card enhanced-stat-card">
-                    <div class="stat-icon">🔬</div>
-                    <div class="stat-number" data-target="15">0</div>
-                    <div class="stat-label">Research Centers</div>
-                </div>
-                <div class="stat-card enhanced-stat-card">
-                    <div class="stat-icon">🌍</div>
-                    <div class="stat-number" data-target="10000">0</div>
-                    <div class="stat-label">Alumni Network</div>
-                </div>
-            </div>
+            </section>
         </div>
-    </section>
+    </main>
 
-    <!-- Footer -->
+<!-- Footer -->
     <footer class="footer enhanced-footer">
         <div class="container">
             <div class="footer-content">

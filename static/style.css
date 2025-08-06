@@ -753,6 +753,14 @@ select.form-control {
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 }
 
+.logo-img {
+    max-height: 50px;  /* Adjust this pixel value to fit your navbar design */
+    width: auto;
+    object-fit: contain;
+    display: block;
+    background-color: transparent;
+}
+
 .navbar .container {
   display: flex;
   align-items: center;
@@ -1811,35 +1819,98 @@ select.form-control {
   background: var(--color-primary);
   border-radius: var(--radius-full);
 }
-
 .timeline-item {
   display: flex;
   justify-content: center;
   position: relative;
   width: 100%;
-  margin-bottom: var(--space-24);
+  margin-bottom: var(--space-24, 2rem);
 }
 
+/* Odd items to the left */
 .timeline-item:nth-child(odd) {
   justify-content: flex-end;
-  margin-right: 50%;
-  padding-right: var(--space-24);
+  padding-right: 8rem;
 }
 
 .timeline-item:nth-child(even) {
   justify-content: flex-start;
-  margin-left: 50%;
-  padding-left: var(--space-24);
+  padding-left: 8rem;
 }
 
+/* Content box */
+.timeline-item .timeline-content {
+  background: black;
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  position: relative;
+  z-index: 1;
+  border-top: 3px solid #00d4ff;
+  min-width: 240px;
+  max-width: 320px;
+}
+
+/* Center timeline vertical line */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  background: #00d4ff;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+/* Marker styles */
+.timeline-marker {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background: #00d4ff;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+/* Marker alignment fix */
 .timeline-item:nth-child(odd) .timeline-marker {
-  right: -10px;
+  left: calc(50% - 8px);
+  right: auto;
 }
 
 .timeline-item:nth-child(even) .timeline-marker {
-  left: -10px;
+  left: calc(50% - 8px);
+  right: auto;
 }
 
+/* Responsive fix */
+@media (max-width: 768px) {
+  .timeline-item,
+  .timeline-item:nth-child(odd),
+  .timeline-item:nth-child(even) {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
+
+  .timeline-item .timeline-content {
+    text-align: center;
+  }
+
+  .timeline::before {
+    left: 50%;
+  }
+
+  .timeline-marker {
+    left: 50% !important;
+    right: auto !important;
+    transform: translate(-50%, -50%);
+  }
+}
 .platform-info {
   display: flex;
   align-items: center;
