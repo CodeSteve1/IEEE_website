@@ -659,41 +659,7 @@ function clearFieldError(fieldName) {
 }
 
 // **FIXED** Enhanced active navigation highlighting on scroll
-function initActiveNavigation() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-menu a.nav-link[href^="#"]');
-    const navbar = document.querySelector('.navbar');
-    
-    if (sections.length === 0 || navLinks.length === 0) return;
 
-    const navbarHeight = navbar ? navbar.offsetHeight : 70;
-
-    const observer = new IntersectionObserver(entries => {
-        let activeId = '';
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                activeId = entry.target.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            const linkHref = link.getAttribute('href');
-            if (linkHref === `#${activeId}`) {
-                link.classList.add('active');
-            } else {
-                link.classList.remove('active');
-            }
-        });
-
-    }, { 
-        rootMargin: `-${navbarHeight}px 0px -${window.innerHeight - navbarHeight - 150}px 0px`,
-        threshold: 0.5
-    });
-
-    sections.forEach(section => {
-        observer.observe(section);
-    });
-}
 
 // Enhanced animations and effects
 function initEnhancedAnimations() {
