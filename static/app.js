@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initFormHandling();
     initActiveNavigation();
     initTimelineAnimations();
-    initNavbarEffects(); // This function is now updated
     initRegistrationButtons();
     initPaperSubmissionInteractions();
     initTemplateDownloadTracking();
@@ -17,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initEnhancedThemeInteractions();
     initSubmissionGuidelines();
     initEnhancedAnimations();
-    initParallaxEffects();
     initLoadingEffects();
 });
 
@@ -29,46 +27,36 @@ function initNavigation() {
     
     if (navToggle && navMenu) {
         navToggle.addEventListener('click', function() {
+            const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
             navMenu.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', !isExpanded);
             
             // Enhanced hamburger menu animation
             const spans = navToggle.querySelectorAll('span');
-            if (navMenu.classList.contains('active')) {
+            if (!isExpanded) {
                 spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
                 spans[1].style.opacity = '0';
                 spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
-                navToggle.setAttribute('aria-expanded', 'true');
             } else {
                 spans[0].style.transform = 'none';
                 spans[1].style.opacity = '1';
                 spans[2].style.transform = 'none';
-                navToggle.setAttribute('aria-expanded', 'false');
             }
         });
         
         // Close menu when clicking on nav links
         navLinks.forEach(link => {
             link.addEventListener('click', function() {
-                if (window.innerWidth <= 768) {
-                    navMenu.classList.remove('active');
-                    const spans = navToggle.querySelectorAll('span');
-                    spans[0].style.transform = 'none';
-                    spans[1].style.opacity = '1';
-                    spans[2].style.transform = 'none';
-                    navToggle.setAttribute('aria-expanded', 'false');
+                if (window.innerWidth <= 768 && navMenu.classList.contains('active')) {
+                   navToggle.click(); // Simulate a click to properly close the menu
                 }
             });
         });
         
         // Close menu when clicking outside
         document.addEventListener('click', function(e) {
-            if (window.innerWidth <= 768 && !navToggle.contains(e.target) && !navMenu.contains(e.target)) {
-                navMenu.classList.remove('active');
-                const spans = navToggle.querySelectorAll('span');
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-                navToggle.setAttribute('aria-expanded', 'false');
+            if (window.innerWidth <= 768 && navMenu.classList.contains('active') && !navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                navToggle.click(); // Simulate a click to properly close
             }
         });
     }
@@ -142,7 +130,7 @@ function initPaperSubmissionInteractions() {
         link.addEventListener('click', function(e) {
             const linkText = this.textContent;
             const linkType = this.href.includes('drive.google.com') ? 'Sample Format' : 
-                           this.href.includes('overleaf.com') ? 'LaTeX Template' : 'IEEE Resource';
+                             this.href.includes('overleaf.com') ? 'LaTeX Template' : 'IEEE Resource';
             
             // Track the click
             console.log(`IEEE Resource accessed: ${linkType} - ${linkText}`);
@@ -670,35 +658,40 @@ function clearFieldError(fieldName) {
     field.style.borderColor = '';
 }
 
-// Enhanced active navigation highlighting
+// **FIXED** Enhanced active navigation highlighting on scroll
 function initActiveNavigation() {
-    // This function is now handled by adding the 'active' class directly in the HTML templates.
-    // Kept for potential future use with dynamic content.
-}
-
-// **FIXED** Enhanced navbar scroll effects
-function initNavbarEffects() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-menu a.nav-link[href^="#"]');
     const navbar = document.querySelector('.navbar');
-    let lastScrollY = window.scrollY;
     
-    window.addEventListener('scroll', function() {
-        const currentScrollY = window.scrollY;
-        
-        // Add or remove 'scrolled' class based on scroll position
-        if (currentScrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-        
-        // Hide/show navbar on scroll
-        if (currentScrollY > lastScrollY && currentScrollY > 100) {
-            navbar.style.transform = 'translateY(-100%)';
-        } else {
-            navbar.style.transform = 'translateY(0)';
-        }
-        
-        lastScrollY = currentScrollY;
+    if (sections.length === 0 || navLinks.length === 0) return;
+
+    const navbarHeight = navbar ? navbar.offsetHeight : 70;
+
+    const observer = new IntersectionObserver(entries => {
+        let activeId = '';
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                activeId = entry.target.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            const linkHref = link.getAttribute('href');
+            if (linkHref === `#${activeId}`) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+
+    }, { 
+        rootMargin: `-${navbarHeight}px 0px -${window.innerHeight - navbarHeight - 150}px 0px`,
+        threshold: 0.5
+    });
+
+    sections.forEach(section => {
+        observer.observe(section);
     });
 }
 
@@ -732,26 +725,6 @@ function initEnhancedAnimations() {
         });
         
         observer.observe(group);
-    });
-}
-
-// Parallax effects
-function initParallaxEffects() {
-    window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
-        const rate = scrolled * -0.5;
-        
-        // Parallax effect for hero background
-        const hero = document.querySelector('.hero-background');
-        if (hero) {
-            hero.style.transform = `translateY(${rate}px)`;
-        }
-        
-        // Floating animation for hero particles
-        const particles = document.querySelector('.hero-particles');
-        if (particles) {
-            particles.style.transform = `translateY(${rate * 0.3}px) rotate(${scrolled * 0.01}deg)`;
-        }
     });
 }
 

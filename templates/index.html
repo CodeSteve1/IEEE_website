@@ -5,12 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ECCI6 - Home</title>
-    <!-- Assuming a Flask-like structure where 'static' folder holds assets -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
             <div class="nav-brand">
@@ -20,11 +18,10 @@
             </div>
             <ul class="nav-menu">
                 <li><a href="{{ url_for('index') }}" class="nav-link active">Home</a></li>
-                <li><a href="{{ url_for('about') }}" class="nav-link">About</a></li>
+                <li><a href="{{ url_for('about') }}" class="nav-link">About & Tracks</a></li>
                 <li><a href="{{ url_for('committee') }}" class="nav-link">Committee</a></li>
                 <li><a href="{{ url_for('dates') }}" class="nav-link">Important Dates</a></li>
                 <li><a href="{{ url_for('submission') }}" class="nav-link">Paper Submission</a></li>
-                <li><a href="{{ url_for('themes') }}" class="nav-link">Themes</a></li>
                 <li><a href="{{ url_for('registration') }}" class="nav-link">Registration</a></li>
                 <li><a href="{{ url_for('venue') }}" class="nav-link">Venue</a></li>
                 <li><a href="{{ url_for('contact') }}" class="nav-link">Contact</a></li>
@@ -38,9 +35,22 @@
     </nav>
 
     <main>
-        <!-- Hero Section -->
         <section id="home" class="hero">
-            <div class="hero-background"></div>
+            <div class="hero-slideshow">
+                <div class="slide">
+                    <img src="{{ url_for('static', filename='images/college1.jpg') }}" alt="College Image 1">
+                </div>
+                <div class="slide">
+                    <img src="{{ url_for('static', filename='images/college2.jpg') }}" alt="College Image 2">
+                </div>
+                <div class="slide">
+                    <img src="{{ url_for('static', filename='images/college3.jpg') }}" alt="College Image 3">
+                </div>
+                <div class="slide">
+                    <img src="{{ url_for('static', filename='images/college4.jpg') }}" alt="College Image 4">
+                </div>
+            </div>
+            <div class="hero-overlay"></div>
             <div class="hero-particles"></div>
             <div class="container">
                 <div class="hero-content">
@@ -58,20 +68,24 @@
                     </div>
                 </div>
             </div>
+             <div class="hero-dots">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+            </div>
         </section>
 
-        <!-- Organized By Section -->
         <section class="section organized-by">
             <div class="container">
                 <div class="organized-content">
                     <h3>Organized by</h3>
-                    <p>Department of Electronics and Communication Engineering<br>
-                        St. Joseph's College of Engineering, Chennai</p>
+                    <p>
+                       <h3> St. Joseph's College of Engineering, Chennai</p></h3>
                 </div>
             </div>
         </section>
 
-        <!-- Technically Co-Sponsored Section -->
         <section class="section co-sponsored">
             <div class="container">
                 <div class="co-sponsored-content">
@@ -104,7 +118,6 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="footer enhanced-footer">
         <div class="container">
             <div class="footer-content">
@@ -153,6 +166,54 @@
         </div>
     </footer>
 
+    <script>
+        let slideIndex = 1;
+        
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("slide");
+            let dots = document.getElementsByClassName("dot");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        // Automatic slideshow
+        function autoShowSlides() {
+            let i;
+            let slides = document.getElementsByClassName("slide");
+            let dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1 }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block"; // Corrected typo from "dissplay"
+            dots[slideIndex - 1].className += " active";
+            setTimeout(autoShowSlides, 4000); // Change image every 4 seconds
+        }
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            showSlides(slideIndex);
+            autoShowSlides();
+        });
+
+    </script>
     <script src="{{ url_for('static', filename='app.js') }}"></script>
 </body>
 

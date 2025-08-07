@@ -749,7 +749,7 @@ select.form-control {
   backdrop-filter: blur(15px);
   z-index: 1000;
   border-bottom: 1px solid var(--color-border);
-  transition: all var(--duration-normal) var(--ease-standard);
+  /*transition: all var(--duration-normal) var(--ease-standard);*/
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -792,7 +792,7 @@ select.form-control {
   font-weight: var(--font-weight-medium);
   padding: var(--space-8) var(--space-16);
   border-radius: var(--radius-full);
-  transition: all var(--duration-fast) var(--ease-standard);
+  
   position: relative;
   overflow: hidden;
 }
@@ -805,7 +805,7 @@ select.form-control {
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(var(--color-primary-rgb, 33, 128, 141), 0.1), transparent);
-  transition: left var(--duration-normal) var(--ease-standard);
+  
 }
 
 .nav-link:hover::before {
@@ -816,7 +816,6 @@ select.form-control {
 .nav-link.active {
   color: var(--color-primary);
   background: var(--color-secondary);
-  transform: translateY(-2px);
 }
 
 .nav-toggle {
@@ -831,10 +830,13 @@ select.form-control {
   height: 3px;
   background: var(--color-text);
   border-radius: var(--radius-sm);
-  transition: all var(--duration-fast) var(--ease-standard);
+  
 }
 
-/* Enhanced Hero Section */
+
+/* === START: UPDATED HERO SECTION STYLES === */
+
+/* Main hero container as a positioning context */
 .hero {
   position: relative;
   min-height: 100vh;
@@ -843,33 +845,49 @@ select.form-control {
   justify-content: center;
   text-align: center;
   overflow: hidden;
+  color: var(--color-white); /* Ensure all text inside is white by default */
 }
 
-.hero-background {
+/* Slideshow container as the background layer */
+.hero-slideshow {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, 
-    var(--color-primary) 0%, 
-    var(--color-teal-600) 30%, 
-    var(--color-teal-700) 60%,
-    var(--color-slate-900) 100%);
-  z-index: -2;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Places it at the very back */
 }
 
-.hero-background::before {
-  content: '';
+/* Individual slides within the slideshow */
+.slide {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.3);
-  z-index: 1;
+  width: 100%;
+  height: 100%;
+  animation: fade 1.5s ease-in-out; /* Add fade animation */
+  display: none; /* Hidden by default, controlled by JS */
 }
 
+/* Ensure images cover the entire slide area without distortion */
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+
+/* The semi-transparent overlay for text readability */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* A single dark overlay */
+  z-index: 2; /* Sits on top of the slideshow */
+}
+
+/* Floating particles effect */
 .hero-particles {
   position: absolute;
   top: 0;
@@ -882,7 +900,50 @@ select.form-control {
     radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
   background-size: 100px 100px, 150px 150px, 200px 200px;
   animation: float 20s infinite linear;
-  z-index: -1;
+  z-index: 3; /* On top of the overlay */
+}
+
+/* Ensure content is on top of all background layers */
+.hero-content {
+  position: relative;
+  z-index: 4; /* Sits on top of everything else */
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--space-32);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5); /* Improves text readability */
+  animation: slideInUp 1s ease-out;
+}
+
+/* Style for the navigation dots */
+.hero-dots {
+    text-align: center;
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4; /* Ensures dots are clickable */
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 4px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.dot.active,
+.dot:hover {
+    background-color: var(--color-white);
+}
+
+/* Keyframe Animations */
+@keyframes fade {
+  from { opacity: 0.8; }
+  to { opacity: 1; }
 }
 
 @keyframes float {
@@ -891,22 +952,24 @@ select.form-control {
   100% { transform: translateY(0px) rotate(360deg); }
 }
 
-.hero-content {
-  position: relative;
-  z-index: 2;
-  color: var(--color-white);
-  max-width: 900px;
-  margin: 0 auto;
-  padding: var(--space-32);
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
+/* Hero Content Specifics */
 .hero-title {
   font-size: clamp(var(--font-size-2xl), 4vw, var(--font-size-4xl));
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-tight);
   margin-bottom: var(--space-16);
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  animation: slideInUp 1s ease-out;
+  color: var(--color-white);
 }
 
 .hero-subtitle {
@@ -914,13 +977,12 @@ select.form-control {
   font-weight: var(--font-weight-semibold);
   color: var(--color-teal-300);
   margin-bottom: var(--space-24);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  animation: slideInUp 1s ease-out 0.2s both;
+  animation-delay: 0.2s;
 }
 
 .hero-details {
   margin-bottom: var(--space-32);
-  animation: slideInUp 1s ease-out 0.4s both;
+  animation-delay: 0.4s;
 }
 
 .hero-date {
@@ -935,17 +997,12 @@ select.form-control {
   opacity: 0.9;
 }
 
-.hero-record {
-  font-size: var(--font-size-md);
-  opacity: 0.8;
-}
-
 .hero-actions {
   display: flex;
   gap: var(--space-16);
   justify-content: center;
   flex-wrap: wrap;
-  animation: slideInUp 1s ease-out 0.6s both;
+  animation-delay: 0.6s;
 }
 
 .hero-btn {
@@ -953,21 +1010,24 @@ select.form-control {
   transition: all var(--duration-normal) var(--ease-standard);
 }
 
+/* Make hero section buttons stand out more on the dark background */
+.hero-btn.btn--outline {
+    color: var(--color-white);
+    border-color: var(--color-white);
+}
+
+.hero-btn.btn--outline:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--color-white);
+}
+
 .hero-btn:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
-@keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* === END: UPDATED HERO SECTION STYLES === */
+
 
 /* Enhanced Organized By and Co-Sponsored Sections */
 .organized-by,
@@ -2025,26 +2085,7 @@ select.form-control {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .nav-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: var(--color-surface);
-    flex-direction: column;
-    padding: var(--space-16);
-    border-top: 1px solid var(--color-border);
-    box-shadow: var(--shadow-lg);
-  }
 
-  .nav-menu.active {
-    display: flex;
-  }
-
-  .nav-toggle {
-    display: flex;
-  }
 
   .hero-title {
     font-size: var(--font-size-2xl);

@@ -3,12 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ECCI6 - About the Conference</title>
-    <!-- Corrected CSS paths for a Flask-like structure -->
+    <title>ECCI6 - About & Tracks</title>
+    <!-- Link to your existing stylesheet -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Inline styles for the interactive tracks from themes.html -->
+    <style>
+        /* Container for the interactive tracks */
+        .tracks-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem; /* Spacing between track cards */
+        }
+
+        /* Make the entire card interactive */
+        .enhanced-theme-card--interactive {
+            flex-direction: column; /* Stack header and details vertically */
+            align-items: stretch; /* Allow children to fill the width */
+        }
+        
+        /* The clickable header area */
+        .track-header {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            cursor: pointer;
+            padding: 1rem; /* Use padding for spacing */
+            box-sizing: border-box;
+        }
+
+        /* Re-use your theme-icon and theme-content for consistency */
+        .track-header .theme-icon {
+             flex-shrink: 0; /* Prevent icon from shrinking */
+        }
+
+        .track-header .theme-content {
+            flex-grow: 1; /* Allow content to take up available space */
+            padding-right: 1rem;
+        }
+        
+        .track-header .theme-content .theme-description {
+            margin-top: 0.25rem;
+            color: #f6f2f2; /* Subtle color for the description */
+        }
+
+        /* The + / x toggle icon on the right */
+        .toggle-icon {
+            font-size: 2rem;
+            font-weight: 300;
+            color: #f4f3f3;
+            transition: transform 0.3s ease-out;
+            padding: 0 0.5rem;
+        }
+
+        .track-header.active .toggle-icon {
+            transform: rotate(45deg);
+            color: #f5f4f4;
+        }
+        
+        /* The collapsible details section */
+        .track-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s ease-in-out, padding 0.5s ease-in-out;
+            padding: 0 2rem; /* Initial padding for smooth transition */
+            border-top: 1px solid transparent; /* Prepare space for border */
+        }
+
+        /* State when the details are shown */
+        .track-details.show {
+            max-height: 1200px; /* Large value to accommodate content */
+            padding: 1.5rem 2rem; /* Add vertical padding when open */
+            border-top: 1px solid #e9ecef; /* Separator line */
+        }
+
+        .track-details ul {
+            list-style-type: none; /* Or use 'disc' if you prefer bullets */
+            padding-left: 0;
+            margin: 0;
+            column-count: 2;
+            column-gap: 2rem;
+        }
+        
+        .track-details li {
+            padding: 0.4rem 0;
+            color: #edebeb;
+            font-size: 0.95rem;
+        }
+        
+        /* Responsive: single column on smaller screens */
+        @media (max-width: 768px) {
+            .track-details ul {
+                column-count: 1;
+            }
+        }
+    </style>
 </head>
 <body>
-        <!-- Navigation -->
+    <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
             <div class="nav-brand">
@@ -16,11 +107,11 @@
             </div>
             <ul class="nav-menu">
                 <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
-                <li><a href="{{ url_for('about') }}" class="nav-link active">About</a></li>
+                <!-- Updated Nav Link -->
+                <li><a href="{{ url_for('about') }}" class="nav-link active">About & Tracks</a></li>
                 <li><a href="{{ url_for('committee') }}" class="nav-link">Committee</a></li>
                 <li><a href="{{ url_for('dates') }}" class="nav-link">Important Dates</a></li>
                 <li><a href="{{ url_for('submission') }}" class="nav-link">Paper Submission</a></li>
-                <li><a href="{{ url_for('themes') }}" class="nav-link">Themes</a></li>
                 <li><a href="{{ url_for('registration') }}" class="nav-link">Registration</a></li>
                 <li><a href="{{ url_for('venue') }}" class="nav-link">Venue</a></li>
                 <li><a href="{{ url_for('contact') }}" class="nav-link">Contact</a></li>
@@ -34,78 +125,275 @@
     </nav>
 
     <main>
-        <!-- ABOUT PAGE CONTENT -->
-        <div id="page-about">
-            <!-- About Conference Section -->
-            <section class="section section--alt" class="section" style="padding-top: 100px;">
-                <div class="container">
-                    <div class="section-header",style="padding-top: 100px;">
-                        <h2>About the Conference: Charting the Future</h2>
-                    </div>
-                    <div class="card enhanced-card">
-                        <div class="card__body">
-                            <p>The <strong>International Conference on Electronics, Communication, Computing, Image Processing, and Industry 6.0 (ECCI6)</strong> is more than just an academic event; it is a confluence of the brightest minds poised to redefine our technological future. Our primary objective is to create a vibrant, interdisciplinary forum where researchers, industry leaders, and practitioners can present, discuss, and challenge the innovations that will underpin the next generation of intelligent systems.</p>
-                            <p>At its core, ECCI6 is dedicated to bridging the gap between theoretical research and real-world application. We aim to foster robust collaborations that translate laboratory breakthroughs into tangible industrial solutions. The conference places a special emphasis on <strong>Industry 6.0</strong>, exploring the symbiotic relationship between human ingenuity and advanced artificial intelligence. We will delve into how this new paradigm promotes hyper-personalized products, sustainable manufacturing through bio-integration, and ethical, human-centric automation. By bringing together diverse perspectives, ECCI6 seeks to catalyze the development of systems that are not only autonomous and efficient but also transparent, explainable, and aligned with societal values.</p>
-                        </div>
+        <!-- ABOUT CONFERENCE SECTION (from about.html) -->
+        <section class="section section--alt" style="padding-top: 100px;">
+            <div class="container">
+                <div class="section-header">
+                    <h2>About the Conference: Charting the Future</h2>
+                </div>
+                <div class="card enhanced-card">
+                    <div class="card__body">
+                        <p>The <strong>International Conference on Electronics, Communication, Computing, Image Processing, and Industry 6.0 (ECCI6)</strong> is more than just an academic event; it is a confluence of the brightest minds poised to redefine our technological future. Our primary objective is to create a vibrant, interdisciplinary forum where researchers, industry leaders, and practitioners can present, discuss, and challenge the innovations that will underpin the next generation of intelligent systems.</p>
+                        <p>At its core, ECCI6 is dedicated to bridging the gap between theoretical research and real-world application. We aim to foster robust collaborations that translate laboratory breakthroughs into tangible industrial solutions. The conference places a special emphasis on <strong>Industry 6.0</strong>, exploring the symbiotic relationship between human ingenuity and advanced artificial intelligence. We will delve into how this new paradigm promotes hyper-personalized products, sustainable manufacturing through bio-integration, and ethical, human-centric automation. By bringing together diverse perspectives, ECCI6 seeks to catalyze the development of systems that are not only autonomous and efficient but also transparent, explainable, and aligned with societal values.</p>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- About Department Section -->
-            <section class="section">
-                <div class="container">
-                    <div class="section-header">
-                        <h2>About the Department of ECE</h2>
-                    </div>
+        <!-- CONFERENCE THEMES SECTION (from themes.html) -->
+        <section id="themes" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Conference Tracks</h2>
+                    <p>ECCI6 invites original research in the following 5 tracks. Click on a card to explore the specific topics.</p>
+                </div>
+                
+                <div class="themes-overview enhanced-themes-overview" style="margin-bottom: 2rem;">
                     <div class="card enhanced-card">
                         <div class="card__body">
-                            <p>Established in 1994, the <strong>Department of Electronics and Communication Engineering</strong> at St. Joseph's College of Engineering has consistently been a trailblazer in engineering education and research. With a legacy of excellence, the department is an NBA-accredited and Anna University-recognized research center, offering both undergraduate and postgraduate programs that are at the cutting edge of technology.</p>
-                            <p>Our strength lies in our state-of-the-art laboratories, which are equipped to handle advanced research in areas like <strong>5G/6G Wireless Communication, VLSI Design, Edge AI, and Embedded IoT Systems</strong>. The department is home to a distinguished faculty, comprising seasoned academics and researchers who are dedicated to mentoring the next generation of engineers. Our curriculum is designed with a strong emphasis on project-based learning and innovation, empowering students to tackle complex challenges and make significant contributions to the global technology landscape.</p>
+                            <h3>Research Tracks Overview</h3>
+                            <p>ECCI6 features 5 comprehensive research tracks covering the latest developments in electronics, communication, computing, image processing, and Industry 6.0 technologies.</p>
+                            <div class="theme-stats">
+                                <div class="theme-stat">
+                                    <span class="stat-number">5</span>
+                                    <span class="stat-label">Interactive Tracks</span>
+                                </div>
+                                <div class="theme-stat">
+                                    <span class="stat-number">80+</span>
+                                    <span class="stat-label">Total Topics</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
 
-            <!-- About Institution Section -->
-            <section class="section section--alt">
-                <div class="container">
-                    <div class="section-header">
-                        <h2>About St. Joseph's College of Engineering</h2>
-                    </div>
-                    <div class="card enhanced-card">
-                        <div class="card__body">
-                            <p>Since its inception in 1994, <strong>St. Joseph's College of Engineering</strong> has emerged as a premier, autonomous institution located on the vibrant IT corridor of Chennai. With the highest grade of 'A+' by NAAC and consistent top rankings, the college is a beacon of higher learning and technical excellence in India. Our lush, green campus provides a serene and inspiring environment for students to learn, innovate, and grow.</p>
-                             <p>We are committed to a holistic educational model that balances rigorous academic training with personal development. The institution is renowned for its world-class infrastructure, including a modern library, advanced research centers, and outstanding sports facilities. Our strong industry partnerships and a dedicated placement cell ensure that our graduates are highly sought after by leading global corporations. At St. Joseph's, we don't just educate engineers; we cultivate leaders and innovators who are prepared to make a positive impact on the world.</p>
+                <div class="tracks-container">
+                    <!-- Track 1 -->
+                    <div class="theme-card enhanced-theme-card enhanced-theme-card--interactive">
+                        <div class="track-header">
+                            <div class="theme-icon">伯</div>
+                            <div class="theme-content">
+                                <h4>Track 1: Electronics</h4>
+                                <p class="theme-description">VLSI, semiconductors, sustainable electronics, and AI-optimized hardware.</p>
+                            </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="track-details">
+                            <ul>
+                                <li>Flexible and Printed Electronics</li>
+                                <li>AI-Optimized Hardware and Edge AI</li>
+                                <li>2D Materials and Advanced Semiconductors</li>
+                                <li>Energy-Efficient and Sustainable Electronics</li>
+                                <li>AI-Driven VLSI Design Automation</li>
+                                <li>Low-Power VLSI Design</li>
+                                <li>Advanced Semiconductor Materials</li>
+                                <li>3D IC and Chiplet Architectures</li>
+                                <li>VLSI for IoT and Edge Devices</li>
+                                <li>Security-First VLSI Design</li>
+                                <li>VLSI in Biomedical Applications</li>
+                                <li>Quantum and Neuromorphic VLSI</li>
+                                <li>FinFET and GAAFET Technologies</li>
+                                <li>VLSI for 5G and High-Speed Communication</li>
+                                <li>Biomedical Electronics</li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="stats-grid enhanced-stats">
-                        <div class="stat-card enhanced-stat-card">
-                            <div class="stat-icon">🎓</div>
-                            <div class="stat-number" data-target="30">0</div>
-                            <div class="stat-label">Years of Excellence</div>
+                    <!-- Track 2 -->
+                    <div class="theme-card enhanced-theme-card enhanced-theme-card--interactive">
+                        <div class="track-header">
+                            <div class="theme-icon">藤</div>
+                            <div class="theme-content">
+                                <h4>Track 2: Communication</h4>
+                                <p class="theme-description">Next-gen networks from 5G/6G and satellites to quantum and optical communication.</p>
+                            </div>
+                            <span class="toggle-icon">+</span>
                         </div>
-                        <div class="stat-card enhanced-stat-card">
-                            <div class="stat-icon">👨‍🎓</div>
-                            <div class="stat-number" data-target="250">0</div>
-                            <div class="stat-label">Distinguished Faculty</div>
+                        <div class="track-details">
+                            <ul>
+                                <li>Advanced IoT & mMTC</li>
+                                <li>AI-Driven Networks</li>
+                                <li>Satellite Mega-Constellations & 5G NTN</li>
+                                <li>Quantum Communication & Cryptography</li>
+                                <li>Green & Energy-Efficient Networks</li>
+                                <li>Terahertz Communication</li>
+                                <li>System-on-Chip (SoC)</li>
+                                <li>5G Technology and Beyond</li>
+                                <li>Silicon Photonics</li>
+                                <li>6G Communication Networks</li>
+                                <li>Software-Defined Networking (SDN)</li>
+                                <li>Network Function Virtualization (NFV)</li>
+                                <li>Edge & Fog Networking</li>
+                                <li>Zero Trust architecture</li>
+                                <li>AI-driven Intrusion Detection (IDS)</li>
+                                <li>Blockchain for Secure Protocols</li>
+                                <li>Federated Learning in IoT Networks</li>
+                                <li>Ultra-Dense Wireless Networks</li>
+                                <li>Device-to-Device (D2D) Communication</li>
+                                <li>Visible Light Communication (VLC)</li>
+                                <li>Cognitive Radio Networks</li>
+                                <li>Self-Organizing Networks (SONs)</li>
+                                <li>Digital Twins in Communication</li>
+                                <li>AI-enhanced Routing Protocols</li>
+                                <li>Predictive QoS Management</li>
+                                <li>Resilient Remote Communication</li>
+                                <li>Photonic Integrated Circuits (PICs)</li>
+                                <li>Free-Space Optical (FSO)</li>
+                            </ul>
                         </div>
-                        <div class="stat-card enhanced-stat-card">
-                            <div class="stat-icon">🔬</div>
-                            <div class="stat-number" data-target="15">0</div>
-                            <div class="stat-label">Advanced Research Centers</div>
+                    </div>
+                    <!-- Track 3 -->
+                    <div class="theme-card enhanced-theme-card enhanced-theme-card--interactive">
+                        <div class="track-header">
+                            <div class="theme-icon">捗</div>
+                            <div class="theme-content">
+                                <h4>Track 3: Computing</h4>
+                                <p class="theme-description">AI/ML, quantum computing, security, and advanced human-computer interfaces.</p>
+                            </div>
+                            <span class="toggle-icon">+</span>
                         </div>
-                        <div class="stat-card enhanced-stat-card">
-                            <div class="stat-icon">🌍</div>
-                            <div class="stat-number" data-target="10000">0</div>
-                            <div class="stat-label">Global Alumni Network</div>
+                        <div class="track-details">
+                            <ul>
+                                <li>Explainable AI (XAI)</li>
+                                <li>Federated Learning</li>
+                                <li>Quantum Machine Learning</li>
+                                <li>Post-Quantum Cryptography</li>
+                                <li>Zero-Trust Security Models</li>
+                                <li>AI-Driven Intrusion Detection</li>
+                                <li>Serverless Architectures</li>
+                                <li>Edge, Cloud and Fog Computing</li>
+                                <li>Computational Genomics</li>
+                                <li>Digital Twins in Healthcare</li>
+                                <li>AI for Mental Health Monitoring</li>
+                                <li>Neurosymbolic AI</li>
+                                <li>Deepfake detection</li>
+                                <li>Ethical data mining</li>
+                                <li>IoT forensics</li>
+                                <li>Neuromorphic chips</li>
+                                <li>DevOps automation</li>
+                                <li>Low-code platforms</li>
+                                <li>AI for genomics</li>
+                                <li>Wearable computing</li>
+                                <li>AR/VR interfaces</li>
+                                <li>Swarm robotics</li>
+                                <li>Haptic feedback systems</li>
+                                <li>AI-driven UX design</li>
+                                <li>Social robotics</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Track 4 -->
+                    <div class="theme-card enhanced-theme-card enhanced-theme-card--interactive">
+                        <div class="track-header">
+                            <div class="theme-icon">名</div>
+                            <div class="theme-content">
+                                <h4>Track 4: Image Processing</h4>
+                                <p class="theme-description">Advanced image analysis, computer vision, and AI-driven visual intelligence.</p>
+                            </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="track-details">
+                            <ul>
+                                <li>Image Restoration with Deep Learning</li>
+                                <li>Generative Adversarial Networks (GANs)</li>
+                                <li>Explainable AI in Image Processing</li>
+                                <li>Tumor Detection & Classification</li>
+                                <li>MRI & CT Image Enhancement</li>
+                                <li>Fusion of Multi-modal Medical Images</li>
+                                <li>Image Processing for Autonomous Vehicles</li>
+                                <li>Real-Time Video Analytics</li>
+                                <li>Satellite Image Analysis</li>
+                                <li>Hyperspectral Image Processing</li>
+                                <li>Quantum Image Processing</li>
+                                <li>Ethical & Fair Image Processing</li>
+                                <li>Hardware-Efficient Image Processing</li>
+                                <li>Datasets and Benchmarks</li>
+                                <li>Document Analysis & Processing</li>
+                                <li>Image & Video Quality Models</li>
+                                <li>Image Processing for Public Health</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Track 5 -->
+                    <div class="theme-card enhanced-theme-card enhanced-theme-card--interactive">
+                        <div class="track-header">
+                            <div class="theme-icon">少</div>
+                            <div class="theme-content">
+                                <h4>Track 5: Industry 6.0</h4>
+                                <p class="theme-description">Smart manufacturing, human-robot collaboration, and sustainable industrial systems.</p>
+                            </div>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="track-details">
+                            <ul>
+                                <li>Advanced AI & Machine Learning</li>
+                                <li>Human-Robot Collaboration (HRC)</li>
+                                <li>Cognitive Computing & Interfaces</li>
+                                <li>Industrial Internet of Things (IIoT)</li>
+                                <li>Digital Twins & Simulation</li>
+                                <li>Blockchain for Supply Chains</li>
+                                <li>Augmented & Virtual Reality (AR/VR)</li>
+                                <li>Sustainable Manufacturing Systems</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
+
+        <!-- ABOUT DEPARTMENT SECTION (from about.html) -->
+        <section class="section section--alt">
+            <div class="container">
+                <div class="section-header">
+                    <h2>About the Department of ECE</h2>
+                </div>
+                <div class="card enhanced-card">
+                    <div class="card__body">
+                        <p>Established in 1994, the <strong>Department of Electronics and Communication Engineering</strong> at St. Joseph's College of Engineering has consistently been a trailblazer in engineering education and research. With a legacy of excellence, the department is an NBA-accredited and Anna University-recognized research center, offering both undergraduate and postgraduate programs that are at the cutting edge of technology.</p>
+                        <p>Our strength lies in our state-of-the-art laboratories, which are equipped to handle advanced research in areas like <strong>5G/6G Wireless Communication, VLSI Design, Edge AI, and Embedded IoT Systems</strong>. The department is home to a distinguished faculty, comprising seasoned academics and researchers who are dedicated to mentoring the next generation of engineers. Our curriculum is designed with a strong emphasis on project-based learning and innovation, empowering students to tackle complex challenges and make significant contributions to the global technology landscape.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT INSTITUTION SECTION (from about.html) -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>About St. Joseph's College of Engineering</h2>
+                </div>
+                <div class="card enhanced-card">
+                    <div class="card__body">
+                        <p>Since its inception in 1994, <strong>St. Joseph's College of Engineering</strong> has emerged as a premier, autonomous institution located on the vibrant IT corridor of Chennai. With the highest grade of 'A+' by NAAC and consistent top rankings, the college is a beacon of higher learning and technical excellence in India. Our lush, green campus provides a serene and inspiring environment for students to learn, innovate, and grow.</p>
+                         <p>We are committed to a holistic educational model that balances rigorous academic training with personal development. The institution is renowned for its world-class infrastructure, including a modern library, advanced research centers, and outstanding sports facilities. Our strong industry partnerships and a dedicated placement cell ensure that our graduates are highly sought after by leading global corporations. At St. Joseph's, we don't just educate engineers; we cultivate leaders and innovators who are prepared to make a positive impact on the world.</p>
+                    </div>
+                </div>
+                <div class="stats-grid enhanced-stats">
+                    <div class="stat-card enhanced-stat-card">
+                        <div class="stat-icon">🎓</div>
+                        <div class="stat-number" data-target="30">0</div>
+                        <div class="stat-label">Years of Excellence</div>
+                    </div>
+                    <div class="stat-card enhanced-stat-card">
+                        <div class="stat-icon">👨‍🎓</div>
+                        <div class="stat-number" data-target="250">0</div>
+                        <div class="stat-label">Distinguished Faculty</div>
+                    </div>
+                    <div class="stat-card enhanced-stat-card">
+                        <div class="stat-icon">🔬</div>
+                        <div class="stat-number" data-target="15">0</div>
+                        <div class="stat-label">Advanced Research Centers</div>
+                    </div>
+                    <div class="stat-card enhanced-stat-card">
+                        <div class="stat-icon">🌍</div>
+                        <div class="stat-number" data-target="10000">0</div>
+                        <div class="stat-label">Global Alumni Network</div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-<!-- Footer -->
+    <!-- Footer -->
     <footer class="footer enhanced-footer">
         <div class="container">
             <div class="footer-content">
@@ -119,11 +407,10 @@
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="{{ url_for('about') }}">About</a></li>
+                        <li><a href="{{ url_for('about') }}">About & Tracks</a></li>
                         <li><a href="{{ url_for('committee') }}">Committee</a></li>
                         <li><a href="{{ url_for('dates') }}">Important Dates</a></li>
                         <li><a href="{{ url_for('submission') }}">Paper Submission</a></li>
-                        <li><a href="{{ url_for('themes') }}">Themes</a></li>
                         <li><a href="{{ url_for('registration') }}">Registration</a></li>
                         <li><a href="{{ url_for('venue') }}">Venue</a></li>
                     </ul>
@@ -149,6 +436,28 @@
         </div>
     </footer>
 
+    <!-- Main App Script -->
     <script src="{{ url_for('static', filename='app.js') }}"></script>
+    
+    <!-- Script for interactive tracks accordion -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Select all the clickable headers
+            const trackHeaders = document.querySelectorAll('.track-header');
+
+            trackHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    // The content panel is the next element after the header
+                    const detailsPanel = header.nextElementSibling;
+                    
+                    // Toggle the 'active' class on the header for styling the icon
+                    header.classList.toggle('active');
+
+                    // Toggle the 'show' class on the details panel to expand/collapse
+                    detailsPanel.classList.toggle('show');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
