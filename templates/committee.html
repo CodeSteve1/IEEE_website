@@ -5,21 +5,223 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ECCI6 - Committee</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Additional styles for tab functionality */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab-button-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .tab-button {
+            background-color: var(--color-surface);
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            font-weight: var(--font-weight-medium);
+            transition: all var(--duration-normal) var(--ease-standard);
+        }
+
+        .tab-button:hover {
+            background-color: var(--color-secondary);
+            border-color: var(--color-primary);
+        }
+
+        .tab-button.active {
+            background-color: var(--color-primary);
+            color: var(--color-btn-primary-text);
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-md);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom card for patrons with images */
+        .patron-card-interactive {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-card-border);
+            box-shadow: var(--shadow-md);
+            padding: 2rem;
+            text-align: center;
+            transition: all var(--duration-normal) var(--ease-standard);
+        }
+        .patron-card-interactive:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+        .patron-card-interactive img {
+            width: 128px;
+            height: 128px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            border: 4px solid var(--color-border);
+            object-fit: cover;
+        }
+        .patron-card-interactive h4 {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: 0.25rem;
+        }
+        .patron-card-interactive p {
+             color: var(--color-text-secondary);
+             margin: 0;
+        }
+
+        /* === STYLES FOR CHAIRS SECTION === */
+        .chair-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Center cards within the row */
+            gap: 1.5rem; /* Space between cards */
+            margin-bottom: 2rem;
+        }
+
+        .chair-card {
+            flex: 1 1 320px; /* Flex-grow, flex-shrink, basis */
+            max-width: 400px; /* Max width for a card */
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-border);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 200px; /* Ensure cards have a consistent height */
+            gap: 0.5rem; /* Space between text elements inside the card */
+            transition: all var(--duration-normal) var(--ease-standard);
+        }
+
+        .chair-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: #1E40AF; /* Dark blue to match new title theme */
+        }
+
+        .chair-title {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-bold);
+            color: #1E40AF; /* New dark blue color for titles */
+            margin-bottom: 0.75rem;
+        }
+
+        .chair-name {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text);
+        }
+
+        .chair-designation {
+            font-size: var(--font-size-base);
+            font-style: italic;
+            color: var(--color-slate-500);
+        }
+
+        .chair-org {
+            font-size: var(--font-size-sm);
+            color: var(--color-slate-500); /* Matched designation for consistency */
+            margin-top: 0.25rem;
+        }
+
+        /* Specific background colors for cards in different rows (Reverted) */
+        .chair-row:nth-of-type(1) .chair-card { background-color: var(--color-bg-1); } /* Light Blue */
+        .chair-row:nth-of-type(2) .chair-card { background-color: var(--color-bg-2); } /* Light Yellow */
+        .chair-row:nth-of-type(3) .chair-card { background-color: var(--color-bg-3); } /* Light Green */
+        
+        /* === STYLES FOR VERTICAL SCROLLING TECHNICAL COMMITTEE TABLE === */
+        .tech-committee-table-wrapper {
+            max-height: 600px; /* Adjust height as needed */
+            overflow-y: auto;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            background-color: var(--color-surface);
+            box-shadow: var(--shadow-inner);
+        }
+
+        /* Custom scrollbar for the table wrapper */
+        .tech-committee-table-wrapper::-webkit-scrollbar {
+            width: 8px;
+        }
+        .tech-committee-table-wrapper::-webkit-scrollbar-track {
+            background: transparent;
+            border-radius: var(--radius-full);
+        }
+        .tech-committee-table-wrapper::-webkit-scrollbar-thumb {
+            background-color: var(--color-primary);
+            border-radius: var(--radius-full);
+        }
+
+        .tech-committee-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .tech-committee-table th,
+        .tech-committee-table td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .tech-committee-table th {
+            background-color: var(--color-secondary);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text);
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .tech-committee-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tech-committee-table tr:hover {
+            background-color: var(--color-bg-1);
+        }
+
+        .tech-committee-table .member-name {
+            font-weight: var(--font-weight-medium);
+            color: var(--color-text);
+        }
+
+        .tech-committee-table .member-affiliation {
+            color: var(--color-text-secondary);
+        }
+
+    </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
             <div class="nav-brand">
-                <h3>ECCI6</h3>
+                <a href="{{ url_for('index') }}">
+                    <img src="{{ url_for('static', filename='images/logo1.png') }}" alt="ECCI6 Logo" class="logo-img">
+                </a>
             </div>
             <ul class="nav-menu">
                 <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
-                <li><a href="{{ url_for('about') }}" class="nav-link">About & Tracks</a></li>
+                <li><a href="{{ url_for('about') }}" class="nav-link">Call for papers</a></li>
                 <li><a href="{{ url_for('committee') }}" class="nav-link active">Committee</a></li>
                 <li><a href="{{ url_for('dates') }}" class="nav-link">Important Dates</a></li>
                 <li><a href="{{ url_for('submission') }}" class="nav-link">Paper Submission</a></li>
-                
                 <li><a href="{{ url_for('registration') }}" class="nav-link">Registration</a></li>
                 <li><a href="{{ url_for('venue') }}" class="nav-link">Venue</a></li>
                 <li><a href="{{ url_for('contact') }}" class="nav-link">Contact</a></li>
@@ -32,114 +234,186 @@
         </div>
     </nav>
 
-    <!-- Patrons Section -->
-    <section id="patrons" class="section section--alt"      >
-        <div class="container">
-            <div class="section-header">
-                <h2>Patrons</h2>
-            </div>
-            <div class="patrons-grid">
-                <div class="patron-card">
-                    <div class="patron-image">
-                        <div class="patron-placeholder">SM</div>
-                    </div>
-                    <div class="patron-info">
-                        <h4>Smt. S. Malarvizhi</h4>
-                        <p>Chairperson & Managing Trustee</p>
-                    </div>
-                </div>
-                <div class="patron-card">
-                    <div class="patron-image">
-                        <div class="patron-placeholder">KA</div>
-                    </div>
-                    <div class="patron-info">
-                        <h4>Sri K. Adithya</h4>
-                        <p>Trustee</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Committee Section -->
-    <section id="committee" class="section">
+    <!-- Main Committee Section -->
+    <section id="committee-main" class="section" style="padding-top: 100px;">
         <div class="container">
             <div class="section-header">
                 <h2>Conference Committee</h2>
-            </div>
-            
-            <!-- Conference Chairs -->
-            <div class="committee-section">
-                <h3>Conference Chair</h3>
-                <div class="committee-grid">
-                    <div class="committee-member">
-                        <h4>Dr. Joseph Martin</h4>
-                        <p>Principal, St. Joseph's College of Engineering</p>
-                    </div>
-                    <div class="committee-member">
-                        <h4>Dr. Maria Thomas</h4>
-                        <p>CEO, St. Joseph's College of Engineering</p>
-                    </div>
-                </div>
+                <p>Meet the distinguished members organizing this conference.</p>
             </div>
 
-            <!-- Conference Co-Chairs -->
-            <div class="committee-section">
-                <h3>Conference Co-Chair</h3>
-                <div class="committee-grid">
-                    <div class="committee-member">
-                        <h4>Dr. Rajesh Kumar</h4>
-                        <p>Professor & Head, Department of Electronics and Communication Engineering, SJCE</p>
-                    </div>
-                    <div class="committee-member">
-                        <h4>Dr. Priya Sharma</h4>
-                        <p>Professor & Head, Department of Electrical and Electronics Engineering, SJCE</p>
-                    </div>
-                </div>
+            <!-- Tab Buttons -->
+            <div class="tab-button-group">
+                <button class="tab-button active" onclick="showTab('patrons')">Patrons</button>
+                <button class="tab-button" onclick="showTab('chairs')">Chairs</button>
+                <button class="tab-button" onclick="showTab('technical')">Technical Committee</button>
             </div>
 
-            <!-- Advisory Committee -->
-            <div class="committee-section">
-                <h3>Advisory Committee</h3>
-                <div class="committee-grid">
-                    <div class="committee-member">
-                        <h4>Dr. Arun Venkatesh</h4>
-                        <p>Professor, Department of ECE, SJCE</p>
+            <!-- Tab Content -->
+            <div id="committee-content">
+
+                <!-- Patrons Section -->
+                <div id="patrons" class="tab-content active">
+                    <div class="committee-section">
+                        <h3>Chief Patron</h3>
+                        <div class="patrons-grid" style="max-width: 400px; margin: 0 auto;">
+                             <div class="patron-card-interactive">
+                                <img src="https://placehold.co/128x128/10B981/FFFFFF?text=BBM" alt="Dr. B. Babu Manoharan" style="border-color: #6EE7B7;">
+                                <h4>Dr. B. Babu Manoharan, M.A., M.B.A., Ph.D.</h4>
+                                <p>Chairman, St. Joseph’s Group of Institutions</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="committee-member">
-                        <h4>Dr. Sunitha Raj</h4>
-                        <p>Professor, Department of EEE, SJCE</p>
-                    </div>
-                    <div class="committee-member">
-                        <h4>Dr. Karthik Narayan</h4>
-                        <p>Professor, Department of CSE, SJCE</p>
-                    </div>
-                    <div class="committee-member">
-                        <h4>Dr. Lakshmi Devi</h4>
-                        <p>Professor, Department of IT, SJCE</p>
+                    <div class="committee-section">
+                        <h3>Patrons</h3>
+                        <div class="patrons-grid">
+                            <div class="patron-card-interactive">
+                                <img src="https://placehold.co/128x128/3B82F6/FFFFFF?text=SJP" alt="Mrs. S. Jessie Priya" style="border-color: #93C5FD;">
+                                <h4>Mrs. S. Jessie Priya, M. Com.</h4>
+                                <p>Executive Director, St. Joseph’s Group of Institutions</p>
+                            </div>
+                            <div class="patron-card-interactive">
+                                <img src="https://placehold.co/128x128/8B5CF6/FFFFFF?text=BSS" alt="Mr. B. Shashi Sekar" style="border-color: #C4B5FD;">
+                                <h4>Mr. B. Shashi Sekar, M. Sc.</h4>
+                                <p>Managing Director, St. Joseph’s Group of Institutions</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Program Committee -->
-            <div class="committee-section">
-                <h3>Program Committee</h3>
-                <div class="committee-grid">
-                    <div class="committee-member">
-                        <h4>Dr. Ramesh Babu</h4>
-                        <p>Associate Professor, ECE Department, SJCE</p>
+                <!-- Chairs Section -->
+                <div id="chairs" class="tab-content">
+                    <!-- Row 1: General Chair -->
+                    <div class="chair-row">
+                        <div class="chair-card" style="max-width: 600px; flex-basis: 600px;">
+                            <div class="chair-title">General Chair</div>
+                            <div style="margin-bottom: 1rem;">
+                                <div class="chair-name">Dr. Vaddi Seshagiri Rao, M.E., Ph.D.</div>
+                                <div class="chair-designation">Principal</div>
+                                <div class="chair-org">St. Joseph’s College of Engineering</div>
+                            </div>
+                            <div>
+                                <div class="chair-name">Dr. P. Sakthivel, M.E., Ph.D.</div>
+                                <div class="chair-designation">Chairman</div>
+                                <div class="chair-org">IEEE Madras Section, Chennai, India</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="committee-member">
-                        <h4>Dr. Kavitha Menon</h4>
-                        <p>Associate Professor, EEE Department, SJCE</p>
+                
+                    <!-- Row 2: Convenor, Conference & Program Chairs -->
+                    <div class="chair-row">
+                        <div class="chair-card">
+                            <div class="chair-title">Convenor</div>
+                            <div class="chair-name">Dr. S. Rajesh Kannan</div>
+                            <div class="chair-designation">Professor & Head, ECE</div>
+                            <div class="chair-org">St. Joseph’s College of Engineering, Chennai</div>
+                        </div>
+                        <div class="chair-card">
+                            <div class="chair-title">Conference Chair</div>
+                            <div class="chair-name">Dr. J. Martin Leo Manickam</div>
+                            <div class="chair-designation">Professor, ECE</div>
+                            <div class="chair-org">St. Joseph’s College of Engineering, Chennai</div>
+                        </div>
+                        <div class="chair-card">
+                            <div class="chair-title">Program Chairs</div>
+                            <div style="margin-bottom: 1rem;">
+                                <div class="chair-name">Mrs. G. Anitha</div>
+                                <div class="chair-designation">Associate Professor, ECE</div>
+                                <div class="chair-org">St. Joseph’s College of Engineering, Chennai</div>
+                            </div>
+                            <div>
+                                <div class="chair-name">Mrs. Jasmine Mystica</div>
+                                <div class="chair-designation">Associate Professor, ECE</div>
+                                <div class="chair-org">St. Joseph’s College of Engineering, Chennai</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="committee-member">
-                        <h4>Dr. Suresh Kumar</h4>
-                        <p>Assistant Professor, ECE Department, SJCE</p>
+                
+                    <!-- Row 3: Other Chairs -->
+                    <div class="chair-row">
+                        <div class="chair-card">
+                            <div class="chair-title">Session Chair</div>
+                            <div class="chair-name">Dr. D. Lakshmi</div>
+                            <div class="chair-designation">Professor, ECE</div>
+                            <div class="chair-org">St. Joseph’s College of Engineering, Chennai</div>
+                        </div>
+                        <div class="chair-card">
+                            <div class="chair-title">Publication Chairs</div>
+                             <div style="margin-bottom: 1rem;">
+                                <div class="chair-name">Dr. M. Suresh</div>
+                                <div class="chair-designation">Associate Professor, ECE</div>
+                                <div class="chair-org">St. Joseph’s College of Engineering, Chennai</div>
+                            </div>
+                            <div>
+                                <div class="chair-name">Mr. G. D. Vignesh</div>
+                                <div class="chair-designation">Assistant Professor, ECE</div>
+                                <div class="chair-org">St. Joseph’s College of Engineering, Chennai</div>
+                            </div>
+                        </div>
+                        <div class="chair-card">
+                            <div class="chair-title">Finance Chair</div>
+                            <div class="chair-name">Dr. P. Elaveni</div>
+                            <div class="chair-designation">Associate Professor, ECE</div>
+                            <div class="chair-org">St. Joseph’s College of Engineering, Chennai</div>
+                        </div>
+                        <div class="chair-card">
+                            <div class="chair-title">Publicity Chair</div>
+                            <div class="chair-name">Mrs. M. Angelin Ponrani</div>
+                            <div class="chair-designation">Associate Professor, ECE</div>
+                            <div class="chair-org">St. Joseph’s College of Engineering, Chennai</div>
+                        </div>
                     </div>
-                    <div class="committee-member">
-                        <h4>Dr. Deepa Nair</h4>
-                        <p>Assistant Professor, CSE Department, SJCE</p>
+                </div>
+
+                <!-- Technical Program Committee Section -->
+                <div id="technical" class="tab-content">
+                    <div class="committee-section">
+                        <h3>Technical Program Advisory Committee</h3>
+                         <div class="tech-committee-table-wrapper">
+                            <table class="tech-committee-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Affiliation</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="member-name">Dr. Arokiasamy Alphones</td><td class="member-affiliation">Nanyang Technological University, Singapore</td></tr>
+                                    <tr><td class="member-name">Dr. Raed A. Abd-Alhameed</td><td class="member-affiliation">University of Bradford, UK</td></tr>
+                                    <tr><td class="member-name">Dr. Samuel Tensingh</td><td class="member-affiliation">University of Sydney, Australia</td></tr>
+                                    <tr><td class="member-name">Dr. Stephen Olatunde Olabiyisi</td><td class="member-affiliation">Ladoke Akintola University of Technology, Nigeria</td></tr>
+                                    <tr><td class="member-name">Dr. Tamizharasan PS</td><td class="member-affiliation">BITS Pilani, Dubai campus</td></tr>
+                                    <tr><td class="member-name">Dr. Xiaolei Wang</td><td class="member-affiliation">LAB University of Applied Sciences, Lahti, Finland</td></tr>
+                                    <tr><td class="member-name">Dr. Manivannan PV</td><td class="member-affiliation">Indian Institute of Technology Madras, Chennai</td></tr>
+                                    <tr><td class="member-name">Dr. Lakshminarayanan</td><td class="member-affiliation">National Institute of Technology, Trichy</td></tr>
+                                    <tr><td class="member-name">Dr. Jeyachitra RK</td><td class="member-affiliation">National Institute of Technology, Trichy</td></tr>
+                                    <tr><td class="member-name">Dr. Surendran B</td><td class="member-affiliation">National Institute of Technology Puducherry</td></tr>
+                                    <tr><td class="member-name">Dr. Malathy Jawahar</td><td class="member-affiliation">Central Leather Research Institute, Chennai</td></tr>
+                                    <tr><td class="member-name">Dr. Selvaraj MD</td><td class="member-affiliation">Indian Institute of Information Technology, Design and Manufacturing (IIITDM) Kancheepuram</td></tr>
+                                    <tr><td class="member-name">Dr. Cinu C Kiliroor</td><td class="member-affiliation">IIIT, Kotayam, Kerala</td></tr>
+                                    <tr><td class="member-name">Dr. Sudeep Sharma</td><td class="member-affiliation">IIIT-Surat</td></tr>
+                                    <tr><td class="member-name">Dr. Bhagyaveni MA</td><td class="member-affiliation">CEG, Anna University, Chennai</td></tr>
+                                    <tr><td class="member-name">Dr. Ganesh Madhan M</td><td class="member-affiliation">MIT, Anna University, Chennai</td></tr>
+                                    <tr><td class="member-name">Dr. Nirmal Kumar P</td><td class="member-affiliation">CEG, Anna University, Chennai</td></tr>
+                                    <tr><td class="member-name">Dr. Saraswady D</td><td class="member-affiliation">Puducherry Technological University, Pondicherry</td></tr>
+                                    <tr><td class="member-name">Dr. Gunasundari R</td><td class="member-affiliation">Puducherry Technological University, Pondicherry</td></tr>
+                                    <tr><td class="member-name">Dr. Alagu Raja RA</td><td class="member-affiliation">Thiagarajar college of Engineering, Madurai</td></tr>
+                                    <tr><td class="member-name">Dr. Jayaramaiah GV</td><td class="member-affiliation">Dr. Ambedkar Institute of Technology, Bengaluru</td></tr>
+                                    <tr><td class="member-name">Dr. Arun Kumar Sangaiah</td><td class="member-affiliation">VIT Vellore</td></tr>
+                                    <tr><td class="member-name">Dr. Duraipandian N</td><td class="member-affiliation">Presidency University, Bengaluru</td></tr>
+                                    <tr><td class="member-name">Dr. Ramachandran B</td><td class="member-affiliation">SRMIST, Kattankulathur</td></tr>
+                                    <tr><td class="member-name">Dr. Gomathy C</td><td class="member-affiliation">SRMIST Vadapalani campus</td></tr>
+                                    <tr><td class="member-name">Dr. Anita X</td><td class="member-affiliation">VIT, Chennai campus</td></tr>
+                                    <tr><td class="member-name">Dr. Sivasangari</td><td class="member-affiliation">Sathyabama Institute of Science and Technology, Chennai</td></tr>
+                                    <tr><td class="member-name">Dr. Gomathi</td><td class="member-affiliation">Sathyabama Institute of Science and Technology, Chennai</td></tr>
+                                    <tr><td class="member-name">Dr. Joseph Gladwin</td><td class="member-affiliation">SSN college of Engineering, Chennai</td></tr>
+                                    <tr><td class="member-name">Dr. Thulasi Bai V</td><td class="member-affiliation">KCG college of Technology, Chennai</td></tr>
+                                    <tr><td class="member-name">Dr. Ashwin</td><td class="member-affiliation">Motherson, Chennai</td></tr>
+                                    <tr><td class="member-name">Dr. Venkatalaksmi B</td><td class="member-affiliation">L & T EduTech, Chennai</td></tr>
+                                    <tr><td class="member-name">Dr. Violet Juli V</td><td class="member-affiliation">Periyar Maniammai Institute of Science & Technology, Thanjavur</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -153,9 +427,6 @@
                 <div class="footer-section">
                     <h4>ECCI6 - 2026</h4>
                     <p>International Conference on Electronics, Communication, Computing, Image Processing, and Industry 6.0</p>
-                    <div class="footer-social">
-                        <span>Follow us for updates</span>
-                    </div>
                 </div>
                 <div class="footer-section">
                     <h4>Quick Links</h4>
@@ -164,9 +435,6 @@
                         <li><a href="{{ url_for('committee') }}">Committee</a></li>
                         <li><a href="{{ url_for('dates') }}">Important Dates</a></li>
                         <li><a href="{{ url_for('submission') }}">Paper Submission</a></li>
-                        <li><a href="{{ url_for('themes') }}">Themes</a></li>
-                        <li><a href="{{ url_for('registration') }}">Registration</a></li>
-                        <li><a href="{{ url_for('venue') }}">Venue</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -175,21 +443,64 @@
                     Chennai, Tamil Nadu, India<br>
                     Email: conference@stjosephs.ac.in</p>
                 </div>
-                <div class="footer-section">
-                    <h4>Important Resources</h4>
-                    <ul>
-                        <li><a href="https://easychair.org/conferences/?conf=ecci6-2026" target="_blank">EasyChair Submission</a></li>
-                        <li><a href="https://www.ieee.org/conferences/publishing/templates.html" target="_blank">IEEE Templates</a></li>
-                        <li><a href="https://journals.ieeeauthorcenter.ieee.org/choose-a-publishing-greement/about-the-ieee-copyright-form/" target="_blank">Copyright Forms</a></li>
-                    </ul>
-                </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 St. Joseph's College of Engineering. All rights reserved. | Designed for ECCI6 Conference</p>
+                <p>&copy; 2026 St. Joseph's College of Engineering. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script src="{{ url_for('static', filename='app.js') }}"></script>
+    <script>
+        function showTab(tabId) {
+            // Hide all tab content
+            const contents = document.querySelectorAll('#committee-content > .tab-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Deactivate all tab buttons in the main group
+            const buttons = document.querySelectorAll('.tab-button-group > .tab-button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Show the selected tab content
+            const selectedContent = document.getElementById(tabId);
+            if (selectedContent) {
+                selectedContent.classList.add('active');
+            }
+
+            // Activate the selected tab button
+            const selectedButton = document.querySelector(`.tab-button-group > [onclick="showTab('${tabId}')"]`);
+            if (selectedButton) {
+                selectedButton.classList.add('active');
+            }
+        }
+
+        // Initially show the correct tab based on URL hash or default to 'patrons'
+        document.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.substring(1);
+            const validTabs = ['patrons', 'chairs', 'technical'];
+            if (hash && validTabs.includes(hash)) {
+                showTab(hash);
+            } else {
+                showTab('patrons');
+            }
+        });
+
+        // Handle clicks on nav links to switch tabs
+        document.querySelectorAll('.nav-link').forEach(link => {
+            if (link.href.includes('#')) {
+                link.addEventListener('click', function(e) {
+                    const tabId = this.href.split('#')[1];
+                    if (document.getElementById(tabId)) {
+                        e.preventDefault();
+                        showTab(tabId);
+                        document.getElementById('committee-main').scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>

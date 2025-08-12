@@ -102,13 +102,15 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-            <div class="nav-brand">
-                <h3>ECCI6</h3>
+                        <div class="nav-brand">
+                <a href="{{ url_for('index') }}">
+                    <img src="{{ url_for('static', filename='images/logo1.png') }}" alt="ECCI6 Logo" class="logo-img">
+                </a>
             </div>
             <ul class="nav-menu">
                 <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
                 <!-- Updated Nav Link -->
-                <li><a href="{{ url_for('about') }}" class="nav-link active">About & Tracks</a></li>
+                <li><a href="{{ url_for('about') }}" class="nav-link active">Call for papers</a></li>
                 <li><a href="{{ url_for('committee') }}" class="nav-link">Committee</a></li>
                 <li><a href="{{ url_for('dates') }}" class="nav-link">Important Dates</a></li>
                 <li><a href="{{ url_for('submission') }}" class="nav-link">Paper Submission</a></li>
@@ -340,20 +342,6 @@
             </div>
         </section>
 
-        <!-- ABOUT DEPARTMENT SECTION (from about.html) -->
-        <section class="section section--alt">
-            <div class="container">
-                <div class="section-header">
-                    <h2>About the Department of ECE</h2>
-                </div>
-                <div class="card enhanced-card">
-                    <div class="card__body">
-                        <p>Established in 1994, the <strong>Department of Electronics and Communication Engineering</strong> at St. Joseph's College of Engineering has consistently been a trailblazer in engineering education and research. With a legacy of excellence, the department is an NBA-accredited and Anna University-recognized research center, offering both undergraduate and postgraduate programs that are at the cutting edge of technology.</p>
-                        <p>Our strength lies in our state-of-the-art laboratories, which are equipped to handle advanced research in areas like <strong>5G/6G Wireless Communication, VLSI Design, Edge AI, and Embedded IoT Systems</strong>. The department is home to a distinguished faculty, comprising seasoned academics and researchers who are dedicated to mentoring the next generation of engineers. Our curriculum is designed with a strong emphasis on project-based learning and innovation, empowering students to tackle complex challenges and make significant contributions to the global technology landscape.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- ABOUT INSTITUTION SECTION (from about.html) -->
         <section class="section">
@@ -407,7 +395,7 @@
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="{{ url_for('about') }}">About & Tracks</a></li>
+                        <li><a href="{{ url_for('about') }}">Call for papers</a></li>
                         <li><a href="{{ url_for('committee') }}">Committee</a></li>
                         <li><a href="{{ url_for('dates') }}">Important Dates</a></li>
                         <li><a href="{{ url_for('submission') }}">Paper Submission</a></li>
