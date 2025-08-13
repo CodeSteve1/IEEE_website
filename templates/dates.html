@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ECCI6 - Important Dates</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-                        <div class="nav-brand">
+            <div class="nav-brand">
                 <a href="{{ url_for('index') }}">
                     <img src="{{ url_for('static', filename='images/logo1.png') }}" alt="ECCI6 Logo" class="logo-img">
                 </a>
@@ -38,33 +40,72 @@
         <div class="container">
             <div class="section-header">
                 <h2>Important Dates</h2>
+                <p>Stay on track with these key deadlines.</p>
             </div>
+
+            <!-- Countdown Timer Section -->
+            <div id="countdown-container" class="countdown-container">
+                <h3 id="countdown-title">Time until next deadline</h3>
+                <div id="countdown" class="countdown">
+                    <div class="countdown-item">
+                        <span id="days">0</span>
+                        <p>Days</p>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="hours">0</span>
+                        <p>Hours</p>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="minutes">0</span>
+                        <p>Minutes</p>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="seconds">0</span>
+                        <p>Seconds</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enhanced Timeline -->
             <div class="timeline">
-                <div class="timeline-item">
+                <!-- Add a data-date attribute for JS -->
+                <div class="timeline-item" data-date="2026-05-15T23:59:59">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
-                        <h4>Full Paper Submission</h4>
+                        <div class="timeline-header">
+                            <i class="fa-solid fa-file-arrow-up timeline-icon"></i>
+                            <h4>Full Paper Submission</h4>
+                        </div>
                         <p class="timeline-date">May 15, 2026</p>
                     </div>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-item" data-date="2026-07-01T23:59:59">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
-                        <h4>Notification of Acceptance</h4>
+                        <div class="timeline-header">
+                           <i class="fa-solid fa-bell timeline-icon"></i>
+                           <h4>Notification of Acceptance</h4>
+                        </div>
                         <p class="timeline-date">July 1, 2026</p>
                     </div>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-item" data-date="2026-08-15T23:59:59">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
-                        <h4>Final Paper Submission</h4>
+                        <div class="timeline-header">
+                            <i class="fa-solid fa-file-check timeline-icon"></i>
+                            <h4>Final Paper Submission</h4>
+                        </div>
                         <p class="timeline-date">August 15, 2026</p>
                     </div>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-item" data-date="2026-09-17T09:00:00">
                     <div class="timeline-marker"></div>
                     <div class="timeline-content">
-                        <h4>Conference Dates</h4>
+                         <div class="timeline-header">
+                            <i class="fa-solid fa-calendar-check timeline-icon"></i>
+                            <h4>Conference Dates</h4>
+                        </div>
                         <p class="timeline-date">September 17-18, 2026</p>
                     </div>
                 </div>
@@ -77,7 +118,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>ECCI6 - 2026</h4>
+                    <h4>ECCI6</h4>
                     <p>International Conference on Electronics, Communication, Computing, Image Processing, and Industry 6.0</p>
                     <div class="footer-social">
                         <span>Follow us for updates</span>
@@ -98,12 +139,12 @@
                     <h4>Contact</h4>
                     <p>St. Joseph's College of Engineering<br>
                     Chennai, Tamil Nadu, India<br>
-                    Email: conference@stjosephs.ac.in</p>
+                    Email: sjce.ecci6@gmail.com</p>
                 </div>
                 <div class="footer-section">
                     <h4>Important Resources</h4>
                     <ul>
-                        <li><a href="https://easychair.org/conferences/?conf=ecci6-2026" target="_blank">EasyChair Submission</a></li>
+                        
                         <li><a href="https://www.ieee.org/conferences/publishing/templates.html" target="_blank">IEEE Templates</a></li>
                         <li><a href="https://journals.ieeeauthorcenter.ieee.org/choose-a-publishing-greement/about-the-ieee-copyright-form/" target="_blank">Copyright Forms</a></li>
                     </ul>
@@ -115,6 +156,82 @@
         </div>
     </footer>
 
+    <script>
+        // It's best practice to add this code to your app.js file,
+        // but it's included here for a complete example.
+        document.addEventListener('DOMContentLoaded', function() {
+            const countdownElement = document.getElementById('countdown');
+            const countdownTitleElement = document.getElementById('countdown-title');
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            const secondsEl = document.getElementById('seconds');
+
+            const timelineItems = Array.from(document.querySelectorAll('.timeline-item'));
+            const now = new Date();
+            let nextEvent = null;
+
+            // Find the next upcoming event
+            for (const item of timelineItems) {
+                const eventDate = new Date(item.dataset.date);
+                if (eventDate > now) {
+                    if (!nextEvent) {
+                        nextEvent = item;
+                    }
+                } else {
+                    // Mark past events
+                    item.classList.add('timeline-item--past');
+                }
+            }
+            
+            if (nextEvent) {
+                // Highlight the next upcoming event
+                nextEvent.classList.add('timeline-item--next');
+                const nextEventTitle = nextEvent.querySelector('h4').textContent;
+                countdownTitleElement.textContent = `Time until ${nextEventTitle}`;
+                const nextEventDate = new Date(nextEvent.dataset.date);
+
+                const interval = setInterval(() => {
+                    const now = new Date().getTime();
+                    const distance = nextEventDate - now;
+
+                    if (distance < 0) {
+                        clearInterval(interval);
+                        countdownElement.innerHTML = "<h4>This deadline has passed.</h4>";
+                        // Refresh the page to find the next deadline
+                        location.reload(); 
+                        return;
+                    }
+
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    daysEl.textContent = days.toString().padStart(2, '0');
+                    hoursEl.textContent = hours.toString().padStart(2, '0');
+                    minutesEl.textContent = minutes.toString().padStart(2, '0');
+                    secondsEl.textContent = seconds.toString().padStart(2, '0');
+
+                }, 1000);
+            } else {
+                // All events are in the past
+                const container = document.getElementById('countdown-container');
+                if (container) {
+                    container.innerHTML = "<h4>The conference has concluded. Thank you for your participation!</h4>";
+                }
+            }
+            
+            // Your existing mobile nav toggle logic can go in your app.js
+            const navToggle = document.querySelector('.nav-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            if(navToggle && navMenu) {
+                navToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                });
+            }
+        });
+    </script>
     <script src="{{ url_for('static', filename='app.js') }}"></script>
 </body>
 </html>

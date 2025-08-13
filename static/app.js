@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initNavigation();
     initSmoothScrolling();
     initScrollAnimations();
-    initStatsCounter();
     initFormHandling();
     initActiveNavigation();
     initTimelineAnimations();
@@ -450,59 +449,9 @@ function initTimelineAnimations() {
     });
 }
 
-// Enhanced statistics counter animation
-function initStatsCounter() {
-    const statNumbers = document.querySelectorAll('.stat-number');
-    let hasAnimated = false;
+
     
-    const animateCounter = (element) => {
-        const target = parseInt(element.getAttribute('data-target'));
-        const duration = 2500; // Longer duration for better effect
-        const increment = target / (duration / 16);
-        let current = 0;
-        
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                current = target;
-                clearInterval(timer);
-            }
-            
-            // Format number with commas and animation
-            const formattedNumber = Math.floor(current).toLocaleString();
-            element.textContent = formattedNumber;
-            
-            // Add pulsing effect when reaching target
-            if (current === target) {
-                element.style.transform = 'scale(1.1)';
-                setTimeout(() => {
-                    element.style.transform = 'scale(1)';
-                }, 200);
-            }
-        }, 16);
-    };
-    
-    // Enhanced intersection observer for stats section
-    const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !hasAnimated) {
-                hasAnimated = true;
-                statNumbers.forEach((stat, index) => {
-                    setTimeout(() => {
-                        animateCounter(stat);
-                    }, index * 200);
-                });
-            }
-        });
-    }, {
-        threshold: 0.5
-    });
-    
-    const statsSection = document.querySelector('.enhanced-stats');
-    if (statsSection) {
-        statsObserver.observe(statsSection);
-    }
-}
+
 
 // Enhanced form handling with validation
 function initFormHandling() {

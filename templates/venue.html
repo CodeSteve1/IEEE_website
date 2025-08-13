@@ -10,7 +10,7 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-                        <div class="nav-brand">
+            <div class="nav-brand">
                 <a href="{{ url_for('index') }}">
                     <img src="{{ url_for('static', filename='images/logo1.png') }}" alt="ECCI6 Logo" class="logo-img">
                 </a>
@@ -34,10 +34,11 @@
     </nav>
 
     <!-- Venue & Location Section -->
-    <section id="venue" class="section section--alt" style="padding-top: 100px;">
+    <section id="venue" class="section section--alt" style="padding-top: 120px;">
         <div class="container">
             <div class="section-header">
                 <h2>Venue & Location</h2>
+                <p>The conference will be held at the prestigious St. Joseph's College of Engineering.</p>
             </div>
             <div class="venue-info enhanced-venue">
                 <div class="venue-details">
@@ -50,22 +51,20 @@
                         </div>
                         <div class="contact-item">
                             <span class="contact-icon">📧</span>
-                            <span>conference@stjosephs.ac.in</span>
+                            <span>sjce.ecci6@gmail.com</span>
                         </div>
                     </div>
-                    <div class="venue-features enhanced-features">
+                    <div class="enhanced-features">
                         <div class="feature-item">🏢 Modern Conference Facilities</div>
                         <div class="feature-item">🚗 Ample Parking Space</div>
                         <div class="feature-item">🍽️ Catering Services</div>
                         <div class="feature-item">📶 High-Speed Internet</div>
-                        <div class="feature-item">🏨 Nearby Accommodations</div>
                         <div class="feature-item">🚌 Transportation Support</div>
                     </div>
                 </div>
                 
                 <!-- Google Maps Embed -->
                 <div class="map-container enhanced-map">
-                    <h4>Location Map</h4>
                     <div class="map-embed">
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.2631094166644!2d80.21220531482175!3d12.869136490889896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525c4b66e8d7cf%3A0x7b6e7c7b5c5c5c5c!2sSt.%20Joseph's%20College%20of%20Engineering!5e0!3m2!1sen!2sin!4v1625000000000!5m2!1sen!2sin"
@@ -91,12 +90,49 @@
         </div>
     </section>
 
+    <!-- About the College Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>About St. Joseph's College of Engineering</h2>
+            </div>
+            <div class="card enhanced-card">
+                <div class="card__body">
+                    <p>Since its inception in 1994, <strong>St. Joseph's College of Engineering</strong> has emerged as a premier, autonomous institution located on the vibrant IT corridor of Chennai. With the highest grade of 'A+' by NAAC and consistent top rankings, the college is a beacon of higher learning and technical excellence in India. Our lush, green campus provides a serene and inspiring environment for students to learn, innovate, and grow.</p>
+                     <p>We are committed to a holistic educational model that balances rigorous academic training with personal development. The institution is renowned for its world-class infrastructure, including a modern library, advanced research centers, and outstanding sports facilities. Our strong industry partnerships and a dedicated placement cell ensure that our graduates are highly sought after by leading global corporations. At St. Joseph's, we don't just educate engineers; we cultivate leaders and innovators who are prepared to make a positive impact on the world.</p>
+                </div>
+            </div>
+            <div class="stats-grid enhanced-stats">
+                <div class="stat-card enhanced-stat-card">
+                    <div class="stat-icon">🎓</div>
+                    <div class="stat-number" data-target="32" data-plus="true">0</div>
+                    <div class="stat-label">Years of Excellence</div>
+                </div>
+                <div class="stat-card enhanced-stat-card">
+                    <div class="stat-icon">👨‍🎓</div>
+                    <div class="stat-number" data-target="250" data-plus="true">0</div>
+                    <div class="stat-label">Distinguished Faculty</div>
+                </div>
+                <div class="stat-card enhanced-stat-card">
+                    <div class="stat-icon">🔬</div>
+                    <div class="stat-number" data-target="15" data-plus="true">0</div>
+                    <div class="stat-label">Advanced Research Centers</div>
+                </div>
+                <div class="stat-card enhanced-stat-card">
+                    <div class="stat-icon">🌍</div>
+                    <div class="stat-number" data-target="10000" data-plus="true">0</div>
+                    <div class="stat-label">Global Alumni Network</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer enhanced-footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>ECCI6 - 2026</h4>
+                    <h4>ECCI6</h4>
                     <p>International Conference on Electronics, Communication, Computing, Image Processing, and Industry 6.0</p>
                     <div class="footer-social">
                         <span>Follow us for updates</span>
@@ -118,12 +154,11 @@
                     <h4>Contact</h4>
                     <p>St. Joseph's College of Engineering<br>
                     Chennai, Tamil Nadu, India<br>
-                    Email: conference@stjosephs.ac.in</p>
+                    Email: sjce.ecci6@gmail.com</p>
                 </div>
                 <div class="footer-section">
                     <h4>Important Resources</h4>
                     <ul>
-                        <li><a href="https://easychair.org/conferences/?conf=ecci6-2026" target="_blank">EasyChair Submission</a></li>
                         <li><a href="https://www.ieee.org/conferences/publishing/templates.html" target="_blank">IEEE Templates</a></li>
                         <li><a href="https://journals.ieeeauthorcenter.ieee.org/choose-a-publishing-greement/about-the-ieee-copyright-form/" target="_blank">Copyright Forms</a></li>
                     </ul>
@@ -136,5 +171,43 @@
     </footer>
 
     <script src="{{ url_for('static', filename='app.js') }}"></script>
+    <script>
+        // Counter animation script to ensure it works as intended
+        document.addEventListener("DOMContentLoaded", function() {
+            const counters = document.querySelectorAll('.stat-number');
+            const speed = 200; // Adjust for faster/slower animation
+
+            const animateCounter = (counter) => {
+                const target = +counter.getAttribute('data-target');
+                // Check if a plus should be added from the data attribute
+                const addPlus = counter.dataset.plus === 'true';
+                const count = +counter.innerText.replace('+', '');
+                const inc = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(() => animateCounter(counter), 10);
+                } else {
+                    // Add the '+' to the number itself if the data attribute is set
+                    counter.innerText = addPlus ? target + '+' : target;
+                }
+            };
+
+            // Use Intersection Observer to trigger animation on scroll
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            counters.forEach(counter => {
+                counter.innerText = '0'; // Reset to 0 before starting
+                observer.observe(counter);
+            });
+        });
+    </script>
 </body>
 </html>

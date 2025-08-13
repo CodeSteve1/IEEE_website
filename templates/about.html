@@ -4,102 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ECCI6 - About & Tracks</title>
-    <!-- Link to your existing stylesheet -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <!-- Inline styles for the interactive tracks from themes.html -->
-    <style>
-        /* Container for the interactive tracks */
-        .tracks-container {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem; /* Spacing between track cards */
-        }
-
-        /* Make the entire card interactive */
-        .enhanced-theme-card--interactive {
-            flex-direction: column; /* Stack header and details vertically */
-            align-items: stretch; /* Allow children to fill the width */
-        }
-        
-        /* The clickable header area */
-        .track-header {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            cursor: pointer;
-            padding: 1rem; /* Use padding for spacing */
-            box-sizing: border-box;
-        }
-
-        /* Re-use your theme-icon and theme-content for consistency */
-        .track-header .theme-icon {
-             flex-shrink: 0; /* Prevent icon from shrinking */
-        }
-
-        .track-header .theme-content {
-            flex-grow: 1; /* Allow content to take up available space */
-            padding-right: 1rem;
-        }
-        
-        .track-header .theme-content .theme-description {
-            margin-top: 0.25rem;
-            color: #f6f2f2; /* Subtle color for the description */
-        }
-
-        /* The + / x toggle icon on the right */
-        .toggle-icon {
-            font-size: 2rem;
-            font-weight: 300;
-            color: #f4f3f3;
-            transition: transform 0.3s ease-out;
-            padding: 0 0.5rem;
-        }
-
-        .track-header.active .toggle-icon {
-            transform: rotate(45deg);
-            color: #f5f4f4;
-        }
-        
-        /* The collapsible details section */
-        .track-details {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.6s ease-in-out, padding 0.5s ease-in-out;
-            padding: 0 2rem; /* Initial padding for smooth transition */
-            border-top: 1px solid transparent; /* Prepare space for border */
-        }
-
-        /* State when the details are shown */
-        .track-details.show {
-            max-height: 1200px; /* Large value to accommodate content */
-            padding: 1.5rem 2rem; /* Add vertical padding when open */
-            border-top: 1px solid #e9ecef; /* Separator line */
-        }
-
-        .track-details ul {
-            list-style-type: none; /* Or use 'disc' if you prefer bullets */
-            padding-left: 0;
-            margin: 0;
-            column-count: 2;
-            column-gap: 2rem;
-        }
-        
-        .track-details li {
-            padding: 0.4rem 0;
-            color: #edebeb;
-            font-size: 0.95rem;
-        }
-        
-        /* Responsive: single column on smaller screens */
-        @media (max-width: 768px) {
-            .track-details ul {
-                column-count: 1;
-            }
-        }
-    </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
                         <div class="nav-brand">
@@ -109,7 +16,6 @@
             </div>
             <ul class="nav-menu">
                 <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
-                <!-- Updated Nav Link -->
                 <li><a href="{{ url_for('about') }}" class="nav-link active">Call for papers</a></li>
                 <li><a href="{{ url_for('committee') }}" class="nav-link">Committee</a></li>
                 <li><a href="{{ url_for('dates') }}" class="nav-link">Important Dates</a></li>
@@ -127,7 +33,6 @@
     </nav>
 
     <main>
-        <!-- ABOUT CONFERENCE SECTION (from about.html) -->
         <section class="section section--alt" style="padding-top: 100px;">
             <div class="container">
                 <div class="section-header">
@@ -142,7 +47,6 @@
             </div>
         </section>
 
-        <!-- CONFERENCE THEMES SECTION (from themes.html) -->
         <section id="themes" class="section">
             <div class="container">
                 <div class="section-header">
@@ -170,10 +74,9 @@
                 </div>
 
                 <div class="tracks-container">
-                    <!-- Track 1 -->
                     <div class="theme-card enhanced-theme-card enhanced-theme-card--interactive">
                         <div class="track-header">
-                            <div class="theme-icon">伯</div>
+                            <img src="{{ url_for('static', filename='images/track1.png') }}" alt="Electronics Track" class="track-header-image">
                             <div class="theme-content">
                                 <h4>Track 1: Electronics</h4>
                                 <p class="theme-description">VLSI, semiconductors, sustainable electronics, and AI-optimized hardware.</p>
@@ -200,10 +103,9 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- Track 2 -->
                     <div class="theme-card enhanced-theme-card enhanced-theme-card--interactive">
                         <div class="track-header">
-                            <div class="theme-icon">藤</div>
+                            <img src="{{ url_for('static', filename='images/track2.png') }}" alt="Communication Track" class="track-header-image">
                             <div class="theme-content">
                                 <h4>Track 2: Communication</h4>
                                 <p class="theme-description">Next-gen networks from 5G/6G and satellites to quantum and optical communication.</p>
@@ -243,10 +145,9 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- Track 3 -->
                     <div class="theme-card enhanced-theme-card enhanced-theme-card--interactive">
                         <div class="track-header">
-                            <div class="theme-icon">捗</div>
+                            <img src="{{ url_for('static', filename='images/track3.png') }}" alt="Computing Track" class="track-header-image">
                             <div class="theme-content">
                                 <h4>Track 3: Computing</h4>
                                 <p class="theme-description">AI/ML, quantum computing, security, and advanced human-computer interfaces.</p>
@@ -283,10 +184,9 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- Track 4 -->
                     <div class="theme-card enhanced-theme-card enhanced-theme-card--interactive">
                         <div class="track-header">
-                            <div class="theme-icon">名</div>
+                            <img src="{{ url_for('static', filename='images/track4.png') }}" alt="Image Processing Track" class="track-header-image">
                             <div class="theme-content">
                                 <h4>Track 4: Image Processing</h4>
                                 <p class="theme-description">Advanced image analysis, computer vision, and AI-driven visual intelligence.</p>
@@ -315,10 +215,9 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- Track 5 -->
                     <div class="theme-card enhanced-theme-card enhanced-theme-card--interactive">
                         <div class="track-header">
-                            <div class="theme-icon">少</div>
+                            <img src="{{ url_for('static', filename='images/track5.png') }}" alt="Industry 6.0 Track" class="track-header-image">
                             <div class="theme-content">
                                 <h4>Track 5: Industry 6.0</h4>
                                 <p class="theme-description">Smart manufacturing, human-robot collaboration, and sustainable industrial systems.</p>
@@ -343,50 +242,15 @@
         </section>
 
 
-        <!-- ABOUT INSTITUTION SECTION (from about.html) -->
-        <section class="section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>About St. Joseph's College of Engineering</h2>
-                </div>
-                <div class="card enhanced-card">
-                    <div class="card__body">
-                        <p>Since its inception in 1994, <strong>St. Joseph's College of Engineering</strong> has emerged as a premier, autonomous institution located on the vibrant IT corridor of Chennai. With the highest grade of 'A+' by NAAC and consistent top rankings, the college is a beacon of higher learning and technical excellence in India. Our lush, green campus provides a serene and inspiring environment for students to learn, innovate, and grow.</p>
-                         <p>We are committed to a holistic educational model that balances rigorous academic training with personal development. The institution is renowned for its world-class infrastructure, including a modern library, advanced research centers, and outstanding sports facilities. Our strong industry partnerships and a dedicated placement cell ensure that our graduates are highly sought after by leading global corporations. At St. Joseph's, we don't just educate engineers; we cultivate leaders and innovators who are prepared to make a positive impact on the world.</p>
-                    </div>
-                </div>
-                <div class="stats-grid enhanced-stats">
-                    <div class="stat-card enhanced-stat-card">
-                        <div class="stat-icon">🎓</div>
-                        <div class="stat-number" data-target="30">0</div>
-                        <div class="stat-label">Years of Excellence</div>
-                    </div>
-                    <div class="stat-card enhanced-stat-card">
-                        <div class="stat-icon">👨‍🎓</div>
-                        <div class="stat-number" data-target="250">0</div>
-                        <div class="stat-label">Distinguished Faculty</div>
-                    </div>
-                    <div class="stat-card enhanced-stat-card">
-                        <div class="stat-icon">🔬</div>
-                        <div class="stat-number" data-target="15">0</div>
-                        <div class="stat-label">Advanced Research Centers</div>
-                    </div>
-                    <div class="stat-card enhanced-stat-card">
-                        <div class="stat-icon">🌍</div>
-                        <div class="stat-number" data-target="10000">0</div>
-                        <div class="stat-label">Global Alumni Network</div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        
+        
     </main>
 
-    <!-- Footer -->
     <footer class="footer enhanced-footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>ECCI6 - 2026</h4>
+                    <h4>ECCI6</h4>
                     <p>International Conference on Electronics, Communication, Computing, Image Processing, and Industry 6.0</p>
                     <div class="footer-social">
                         <span>Follow us for updates</span>
@@ -407,12 +271,12 @@
                     <h4>Contact</h4>
                     <p>St. Joseph's College of Engineering<br>
                     Chennai, Tamil Nadu, India<br>
-                    Email: conference@stjosephs.ac.in</p>
+                    Email: sjce.ecci6@gmail.com</p>
                 </div>
                 <div class="footer-section">
                     <h4>Important Resources</h4>
                     <ul>
-                        <li><a href="https://easychair.org/conferences/?conf=ecci6-2026" target="_blank">EasyChair Submission</a></li>
+                        
                         <li><a href="https://www.ieee.org/conferences/publishing/templates.html" target="_blank">IEEE Templates</a></li>
                         <li><a href="https://journals.ieeeauthorcenter.ieee.org/choose-a-publishing-greement/about-the-ieee-copyright-form/" target="_blank">Copyright Forms</a></li>
                     </ul>
@@ -424,10 +288,8 @@
         </div>
     </footer>
 
-    <!-- Main App Script -->
     <script src="{{ url_for('static', filename='app.js') }}"></script>
     
-    <!-- Script for interactive tracks accordion -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Select all the clickable headers
