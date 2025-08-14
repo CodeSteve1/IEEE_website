@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,10 +47,17 @@
             border-color: var(--color-primary);
             box-shadow: var(--shadow-md);
         }
-        
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Custom card for patrons with images */
@@ -62,10 +70,12 @@
             text-align: center;
             transition: all var(--duration-normal) var(--ease-standard);
         }
+
         .patron-card-interactive:hover {
             transform: translateY(-8px);
             box-shadow: var(--shadow-lg);
         }
+
         .patron-card-interactive img {
             width: 128px;
             height: 128px;
@@ -74,28 +84,34 @@
             border: 4px solid var(--color-border);
             object-fit: cover;
         }
+
         .patron-card-interactive h4 {
             font-size: var(--font-size-lg);
             font-weight: var(--font-weight-semibold);
             margin-bottom: 0.25rem;
         }
+
         .patron-card-interactive p {
-             color: var(--color-text-secondary);
-             margin: 0;
+            color: var(--color-text-secondary);
+            margin: 0;
         }
 
         /* === STYLES FOR CHAIRS SECTION === */
         .chair-row {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center; /* Center cards within the row */
-            gap: 1.5rem; /* Space between cards */
+            justify-content: center;
+            /* Center cards within the row */
+            gap: 1.5rem;
+            /* Space between cards */
             margin-bottom: 2rem;
         }
 
         .chair-card {
-            flex: 1 1 320px; /* Flex-grow, flex-shrink, basis */
-            max-width: 400px; /* Max width for a card */
+            flex: 1 1 320px;
+            /* Flex-grow, flex-shrink, basis */
+            max-width: 400px;
+            /* Max width for a card */
             padding: 1.5rem;
             border-radius: var(--radius-lg);
             border: 1px solid var(--color-border);
@@ -103,21 +119,25 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            min-height: 200px; /* Ensure cards have a consistent height */
-            gap: 0.5rem; /* Space between text elements inside the card */
+            min-height: 200px;
+            /* Ensure cards have a consistent height */
+            gap: 0.5rem;
+            /* Space between text elements inside the card */
             transition: all var(--duration-normal) var(--ease-standard);
         }
 
         .chair-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-lg);
-            border-color: #1E40AF; /* Dark blue to match new title theme */
+            border-color: #1E40AF;
+            /* Dark blue to match new title theme */
         }
 
         .chair-title {
             font-size: var(--font-size-lg);
             font-weight: var(--font-weight-bold);
-            color: #1E40AF; /* New dark blue color for titles */
+            color: #1E40AF;
+            /* New dark blue color for titles */
             margin-bottom: 0.75rem;
         }
 
@@ -135,18 +155,32 @@
 
         .chair-org {
             font-size: var(--font-size-sm);
-            color: var(--color-slate-500); /* Matched designation for consistency */
+            color: var(--color-slate-500);
+            /* Matched designation for consistency */
             margin-top: 0.25rem;
         }
 
         /* Specific background colors for cards in different rows (Reverted) */
-        .chair-row:nth-of-type(1) .chair-card { background-color: var(--color-bg-1); } /* Light Blue */
-        .chair-row:nth-of-type(2) .chair-card { background-color: var(--color-bg-2); } /* Light Yellow */
-        .chair-row:nth-of-type(3) .chair-card { background-color: var(--color-bg-3); } /* Light Green */
-        
+        .chair-row:nth-of-type(1) .chair-card {
+            background-color: var(--color-bg-1);
+        }
+
+        /* Light Blue */
+        .chair-row:nth-of-type(2) .chair-card {
+            background-color: var(--color-bg-2);
+        }
+
+        /* Light Yellow */
+        .chair-row:nth-of-type(3) .chair-card {
+            background-color: var(--color-bg-3);
+        }
+
+        /* Light Green */
+
         /* === STYLES FOR VERTICAL SCROLLING TECHNICAL COMMITTEE TABLE === */
         .tech-committee-table-wrapper {
-            max-height: 600px; /* Adjust height as needed */
+            max-height: 600px;
+            /* Adjust height as needed */
             overflow-y: auto;
             border: 1px solid var(--color-border);
             border-radius: var(--radius-lg);
@@ -158,10 +192,12 @@
         .tech-committee-table-wrapper::-webkit-scrollbar {
             width: 8px;
         }
+
         .tech-committee-table-wrapper::-webkit-scrollbar-track {
             background: transparent;
             border-radius: var(--radius-full);
         }
+
         .tech-committee-table-wrapper::-webkit-scrollbar-thumb {
             background-color: var(--color-primary);
             border-radius: var(--radius-full);
@@ -204,9 +240,9 @@
         .tech-committee-table .member-affiliation {
             color: var(--color-text-secondary);
         }
-
     </style>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar">
@@ -257,8 +293,9 @@
                     <div class="committee-section">
                         <h3>Chief Patron</h3>
                         <div class="patrons-grid" style="max-width: 400px; margin: 0 auto;">
-                             <div class="patron-card-interactive">
-                                <img src="{{ url_for('static', filename='images/babu_manoharan.jpg') }}" alt="Dr. B. Babu Manoharan" style="border-color: #6EE7B7;">
+                            <div class="patron-card-interactive">
+                                <img src="{{ url_for('static', filename='images/Babu_manoharan.jpg') }}"
+                                    alt="Dr. B. Babu Manoharan" style="border-color: #6EE7B7;">
                                 <h4>Dr. B. Babu Manoharan, M.A., M.B.A., Ph.D.</h4>
                                 <p>Chairman, St. Joseph’s Group of Institutions</p>
                             </div>
@@ -268,12 +305,14 @@
                         <h3>Patrons</h3>
                         <div class="patrons-grid">
                             <div class="patron-card-interactive">
-                                <img src="{{ url_for('static', filename='images/jessiepriya.jpg') }}" alt="Mrs. S. Jessie Priya" style="border-color: #93C5FD;">
+                                <img src="{{ url_for('static', filename='images/Jessiepriya.jpg') }}"
+                                    alt="Mrs. S. Jessie Priya" style="border-color: #93C5FD;">
                                 <h4>Mrs. S. Jessie Priya, M. Com.</h4>
                                 <p>Executive Director, St. Joseph’s Group of Institutions</p>
                             </div>
                             <div class="patron-card-interactive">
-                                <img src="{{ url_for('static', filename='images/sashisekar.jpg') }}" alt="Mr. B. Shashi Sekar" style="border-color: #C4B5FD;">
+                                <img src="{{ url_for('static', filename='images/sashisekar.jpg') }}"
+                                    alt="Mr. B. Shashi Sekar" style="border-color: #C4B5FD;">
                                 <h4>Mr. B. Shashi Sekar, M. Sc.</h4>
                                 <p>Managing Director, St. Joseph’s Group of Institutions</p>
                             </div>
@@ -299,7 +338,7 @@
                             </div>
                         </div>
                     </div>
-                
+
                     <!-- Row 2: Convenor, Conference & Program Chairs -->
                     <div class="chair-row">
                         <div class="chair-card">
@@ -328,7 +367,7 @@
                             </div>
                         </div>
                     </div>
-                
+
                     <!-- Row 3: Other Chairs -->
                     <div class="chair-row">
                         <div class="chair-card">
@@ -339,7 +378,7 @@
                         </div>
                         <div class="chair-card">
                             <div class="chair-title">Publication Chairs</div>
-                             <div style="margin-bottom: 1rem;">
+                            <div style="margin-bottom: 1rem;">
                                 <div class="chair-name">Dr. M. Suresh</div>
                                 <div class="chair-designation">Associate Professor, ECE</div>
                                 <div class="chair-org">St. Joseph’s College of Engineering, Chennai</div>
@@ -369,7 +408,7 @@
                 <div id="technical" class="tab-content">
                     <div class="committee-section">
                         <h3>Technical Program Advisory Committee</h3>
-                         <div class="tech-committee-table-wrapper">
+                        <div class="tech-committee-table-wrapper">
                             <table class="tech-committee-table">
                                 <thead>
                                     <tr>
@@ -378,39 +417,175 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr><td class="member-name">Dr. Arokiasamy Alphones</td><td class="member-affiliation">Nanyang Technological University, Singapore</td></tr>
-                                    <tr><td class="member-name">Dr. Raed A. Abd-Alhameed</td><td class="member-affiliation">University of Bradford, UK</td></tr>
-                                    <tr><td class="member-name">Dr. Samuel Tensingh</td><td class="member-affiliation">University of Sydney, Australia</td></tr>
-                                    <tr><td class="member-name">Dr. Stephen Olatunde Olabiyisi</td><td class="member-affiliation">Ladoke Akintola University of Technology, Nigeria</td></tr>
-                                    <tr><td class="member-name">Dr. Tamizharasan PS</td><td class="member-affiliation">BITS Pilani, Dubai campus</td></tr>
-                                    <tr><td class="member-name">Dr. Xiaolei Wang</td><td class="member-affiliation">LAB University of Applied Sciences, Lahti, Finland</td></tr>
-                                    <tr><td class="member-name">Dr. Manivannan PV</td><td class="member-affiliation">Indian Institute of Technology Madras, Chennai</td></tr>
-                                    <tr><td class="member-name">Dr. Lakshminarayanan</td><td class="member-affiliation">National Institute of Technology, Trichy</td></tr>
-                                    <tr><td class="member-name">Dr. Jeyachitra RK</td><td class="member-affiliation">National Institute of Technology, Trichy</td></tr>
-                                    <tr><td class="member-name">Dr. Surendran B</td><td class="member-affiliation">National Institute of Technology Puducherry</td></tr>
-                                    <tr><td class="member-name">Dr. Malathy Jawahar</td><td class="member-affiliation">Central Leather Research Institute, Chennai</td></tr>
-                                    <tr><td class="member-name">Dr. Selvaraj MD</td><td class="member-affiliation">Indian Institute of Information Technology, Design and Manufacturing (IIITDM) Kancheepuram</td></tr>
-                                    <tr><td class="member-name">Dr. Cinu C Kiliroor</td><td class="member-affiliation">IIIT, Kotayam, Kerala</td></tr>
-                                    <tr><td class="member-name">Dr. Sudeep Sharma</td><td class="member-affiliation">IIIT-Surat</td></tr>
-                                    <tr><td class="member-name">Dr. Bhagyaveni MA</td><td class="member-affiliation">CEG, Anna University, Chennai</td></tr>
-                                    <tr><td class="member-name">Dr. Ganesh Madhan M</td><td class="member-affiliation">MIT, Anna University, Chennai</td></tr>
-                                    <tr><td class="member-name">Dr. Nirmal Kumar P</td><td class="member-affiliation">CEG, Anna University, Chennai</td></tr>
-                                    <tr><td class="member-name">Dr. Saraswady D</td><td class="member-affiliation">Puducherry Technological University, Pondicherry</td></tr>
-                                    <tr><td class="member-name">Dr. Gunasundari R</td><td class="member-affiliation">Puducherry Technological University, Pondicherry</td></tr>
-                                    <tr><td class="member-name">Dr. Alagu Raja RA</td><td class="member-affiliation">Thiagarajar college of Engineering, Madurai</td></tr>
-                                    <tr><td class="member-name">Dr. Jayaramaiah GV</td><td class="member-affiliation">Dr. Ambedkar Institute of Technology, Bengaluru</td></tr>
-                                    <tr><td class="member-name">Dr. Arun Kumar Sangaiah</td><td class="member-affiliation">VIT Vellore</td></tr>
-                                    <tr><td class="member-name">Dr. Duraipandian N</td><td class="member-affiliation">Presidency University, Bengaluru</td></tr>
-                                    <tr><td class="member-name">Dr. Ramachandran B</td><td class="member-affiliation">SRMIST, Kattankulathur</td></tr>
-                                    <tr><td class="member-name">Dr. Gomathy C</td><td class="member-affiliation">SRMIST Vadapalani campus</td></tr>
-                                    <tr><td class="member-name">Dr. Anita X</td><td class="member-affiliation">VIT, Chennai campus</td></tr>
-                                    <tr><td class="member-name">Dr. Sivasangari</td><td class="member-affiliation">Sathyabama Institute of Science and Technology, Chennai</td></tr>
-                                    <tr><td class="member-name">Dr. Gomathi</td><td class="member-affiliation">Sathyabama Institute of Science and Technology, Chennai</td></tr>
-                                    <tr><td class="member-name">Dr. Joseph Gladwin</td><td class="member-affiliation">SSN college of Engineering, Chennai</td></tr>
-                                    <tr><td class="member-name">Dr. Thulasi Bai V</td><td class="member-affiliation">KCG college of Technology, Chennai</td></tr>
-                                    <tr><td class="member-name">Dr. Ashwin</td><td class="member-affiliation">Motherson, Chennai</td></tr>
-                                    <tr><td class="member-name">Dr. Venkatalaksmi B</td><td class="member-affiliation">L & T EduTech, Chennai</td></tr>
-                                    <tr><td class="member-name">Dr. Violet Juli V</td><td class="member-affiliation">Periyar Maniammai Institute of Science & Technology, Thanjavur</td></tr>
+                                    <tr>
+                                        <td class="member-name">Dr. S. Radha</td>
+                                        <td class="member-affiliation">Secretary, IEEE Madras Section, Chennai</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. T. Shanmuganantham</td>
+                                        <td class="member-affiliation">Vice-Chairman (Academics), IEEE Madras Section,
+                                            Chennai</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. G. Kulanthaivel</td>
+                                        <td class="member-affiliation">Professor, NITTTR , Chennai</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Arokiasamy Alphones</td>
+                                        <td class="member-affiliation">Nanyang Technological University, Singapore</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Xavier Fernando</td>
+                                        <td class="member-affiliation">Toronto Metropolitan University, Canada</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Supavadee Aramvith</td>
+                                        <td class="member-affiliation">Chulalongkorn University, Thailand</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Lipo Wang</td>
+                                        <td class="member-affiliation">Nanyang Technological University, Singapore</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Raed A. Abd-Alhameed</td>
+                                        <td class="member-affiliation">University of Bradford, UK</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Xiaolei Wang</td>
+                                        <td class="member-affiliation">LAB University of Applied Sciences, Lahti,
+                                            Finland</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Milan Stehlik</td>
+                                        <td class="member-affiliation">University of Valparaiso, Chile</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Stephen Olatunde Olabiyisi</td>
+                                        <td class="member-affiliation">Ladoke Akintola University of Technology, Nigeria
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Tamizharasan PS</td>
+                                        <td class="member-affiliation">BITS Pilani, Dubai campus</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Vedha Priya Vadhana Rajamani</td>
+                                        <td class="member-affiliation">University of the West of Scotland London UK</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Samuel Tensingh</td>
+                                        <td class="member-affiliation">University of Sydney, Australia</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Manivannan PV</td>
+                                        <td class="member-affiliation">Indian Institute of Technology Madras, Chennai
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Lakshminarayanan</td>
+                                        <td class="member-affiliation">National Institute of Technology, Trichy</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Jeyachitra RK</td>
+                                        <td class="member-affiliation">National Institute of Technology, Trichy</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Surendran B</td>
+                                        <td class="member-affiliation">National Institute of Technology Puducherry</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Malathy Jawahar</td>
+                                        <td class="member-affiliation">Central Leather Research Institute, Chennai</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Selvaraj MD</td>
+                                        <td class="member-affiliation">Indian Institute of Information Technology,
+                                            Design and Manufacturing (IIITDM) Kancheepuram</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Cinu C Kiliroor</td>
+                                        <td class="member-affiliation">IIIT, Kotayam, Kerala</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Sudeep Sharma</td>
+                                        <td class="member-affiliation">IIIT-Surat</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. V. Shanmughaneethi</td>
+                                        <td class="member-affiliation">NITTTR, Chennai</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Bhagyaveni MA</td>
+                                        <td class="member-affiliation">CEG, Anna University, Chennai</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Ganesh Madhan M</td>
+                                        <td class="member-affiliation">MIT, Anna University, Chennai</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Nirmal Kumar P</td>
+                                        <td class="member-affiliation">CEG, Anna University, Chennai</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Saraswady D</td>
+                                        <td class="member-affiliation">Puducherry Technological University, Pondicherry
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Gunasundari R</td>
+                                        <td class="member-affiliation">Puducherry Technological University, Pondicherry
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Alagu Raja RA</td>
+                                        <td class="member-affiliation">Thiagarajar college of Engineering, Madurai</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Arun Kumar Sangaiah</td>
+                                        <td class="member-affiliation">VIT Vellore</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Duraipandian N</td>
+                                        <td class="member-affiliation">Presidency University, Bengaluru</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Ramachandran B</td>
+                                        <td class="member-affiliation">SRMIST, Kattankulathur</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Gomathy C</td>
+                                        <td class="member-affiliation">SRMIST Vadapalani campus</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Anita X</td>
+                                        <td class="member-affiliation">VIT, Chennai campus</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Sivasangari</td>
+                                        <td class="member-affiliation">Sathyabama Institute of Science and Technology,
+                                            Chennai</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Gomathi</td>
+                                        <td class="member-affiliation">Sathyabama Institute of Science and Technology,
+                                            Chennai</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Joseph Gladwin</td>
+                                        <td class="member-affiliation">SSN college of Engineering, Chennai</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Thulasi Bai V</td>
+                                        <td class="member-affiliation">KCG college of Technology, Chennai</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Ashwin</td>
+                                        <td class="member-affiliation">Motherson, Chennai</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="member-name">Dr. Venkatalaksmi B</td>
+                                        <td class="member-affiliation">L & T EduTech, Chennai</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -426,7 +601,8 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h4>ECCI6</h4>
-                    <p>International Conference on Electronics, Communication, Computing, Image Processing, and Industry 6.0</p>
+                    <p>International Conference on Electronics, Communication, Computing, Image Processing, and Industry
+                        6.0</p>
                 </div>
                 <div class="footer-section">
                     <h4>Quick Links</h4>
@@ -440,8 +616,8 @@
                 <div class="footer-section">
                     <h4>Contact</h4>
                     <p>St. Joseph's College of Engineering<br>
-                    Chennai, Tamil Nadu, India<br>
-                    Email: sjce.ecci6@gmail.com</p>
+                        Chennai, Tamil Nadu, India<br>
+                        Email: sjce.ecci6@gmail.com</p>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -491,7 +667,7 @@
         // Handle clicks on nav links to switch tabs
         document.querySelectorAll('.nav-link').forEach(link => {
             if (link.href.includes('#')) {
-                link.addEventListener('click', function(e) {
+                link.addEventListener('click', function (e) {
                     const tabId = this.href.split('#')[1];
                     if (document.getElementById(tabId)) {
                         e.preventDefault();
@@ -503,4 +679,5 @@
         });
     </script>
 </body>
+
 </html>

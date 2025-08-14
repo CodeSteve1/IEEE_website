@@ -1684,8 +1684,8 @@ select.form-control {
 
 /* Enhanced Contact */
 .enhanced-contact {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  justify-content: center;
   gap: var(--space-32);
   align-items: start;
 }
