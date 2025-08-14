@@ -2376,7 +2376,7 @@ select.form-control {
   
   /* Ensure the main content doesn't hide behind the fixed navbar */
   main {
-      padding-top: 75px; /* Adjust this value to match your navbar's height */
+      padding-top: 0px; /* Adjust this value to match your navbar's height */
   }
   /* === END OF MOBILE NAVIGATION FIX === */
 
