@@ -503,7 +503,7 @@ select.form-control {
 }
 
 /* Add a dark mode specific caret */
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   select.form-control {
     background-image: var(--select-caret-dark);
   }
